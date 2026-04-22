@@ -1,86 +1,758 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NovaTravel — Авторские архитектурные туры по Центральной Азии</title>
-  <meta name="description" content="Авторские архитектурные туры по Кыргызстану, Казахстану, Узбекистану, Таджикистану и Туркменистану. Малые группы, местные гиды, мастер-классы.">
-  <meta property="og:title" content="NovaTravel — Архитектурные туры по Центральной Азии">
-  <meta property="og:description" content="Авторские маршруты по Шёлковому пути. Малые группы, местные эксперты.">
-  <meta property="og:image" content="images/og-image.jpg">
-  <meta property="og:type" content="website">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaTravel — Авторские туры по Центральной Азии</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lav:#B8A9CC;--lav-dk:#8B7AAA;--lav-lt:#EDE8F5;--lav-dp:#4A3B6B;
+  --grn:#7A9E7E;--grn-lt:#EBF2EB;--pch:#E8AA88;--pch-lt:#FDF0E8;
+  --bg:#FAFAF8;--wh:#fff;--tx:#2C2438;--txm:#6B5F7A;--txl:#A094AE;--bdr:#E8E0F0;
+  --fh:'Playfair Display',Georgia,serif;--fb:'DM Sans',sans-serif;
+  --r:16px;--rs:8px;--sh:0 4px 32px rgba(74,59,107,.10);--shl:0 16px 56px rgba(74,59,107,.16);--hh:76px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font-family:var(--fb)}
 
-  <!-- Google Analytics GA4 — замени G-XXXXXXXXXX на свой ID -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.sec{padding:96px 0}
+.sec-alt{background:var(--lav-lt)}
+.sec-grn{background:var(--grn-lt)}
+.sec-dk{background:var(--lav-dp);color:#fff}
 
-  <!-- Яндекс.Метрика — замени XXXXXXXX на свой ID -->
-  <!-- <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();...})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(XXXXXXXX,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});</script> -->
+.lbl{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--lav-dk);display:block;margin-bottom:12px}
+.dk .lbl{color:var(--lav)}
+.h2{font-family:var(--fh);font-size:clamp(1.9rem,4vw,2.9rem);font-weight:400;line-height:1.15;margin-bottom:18px}
+.h2 em{font-style:italic;color:var(--lav-dk)}
+.dk .h2{color:#fff}
+.sub{font-size:.97rem;color:var(--txm);line-height:1.75;max-width:540px}
+.dk .sub{color:rgba(255,255,255,.62)}
+.sh{margin-bottom:52px}
+.sh.c{text-align:center}.sh.c .sub{margin:0 auto}
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="images/logo.png" type="image/png">
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:40px;font-family:var(--fb);font-size:.875rem;font-weight:500;letter-spacing:.02em;transition:all .25s;white-space:nowrap;cursor:pointer}
+.bp{background:var(--lav-dk);color:#fff;border:none}
+.bp:hover{background:var(--lav-dp);transform:translateY(-2px);box-shadow:var(--sh)}
+.bo{border:1.5px solid var(--lav-dk);color:var(--lav-dk);background:none}
+.bo:hover{background:var(--lav-dk);color:#fff}
+.bw{background:#fff;color:var(--lav-dp);border:none}
+.bw:hover{background:var(--lav-lt)}
+.bsm{padding:9px 20px;font-size:.82rem}
+.bfull{width:100%;justify-content:center}
+
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase}
+.bx-hit{background:var(--pch);color:#fff}
+.bx-sale{background:#D95B5B;color:#fff}
+.bx-new{background:var(--grn);color:#fff}
+.bx-on{background:var(--lav-dk);color:#fff}
+.bx-off{background:var(--grn);color:#fff}
+.bx-free{background:var(--lav-lt);color:var(--lav-dp)}
+.bx-paid{background:var(--lav-dp);color:#fff}
+
+/* ═══ HEADER */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--hh);background:rgba(250,250,248,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--bdr);transition:box-shadow .3s}
+.hdr.sc{box-shadow:var(--sh)}
+.hi{height:100%;display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo img{height:42px;width:42px;object-fit:contain}
+.logo-n{font-family:var(--fh);font-size:1.22rem;color:var(--tx)}
+.hnav{display:flex;gap:22px;margin-left:16px}
+.hnav a{font-size:.86rem;color:var(--txm);transition:color .2s}
+.hnav a:hover{color:var(--lav-dk)}
+.hsoc{display:flex;gap:10px;align-items:center;margin-left:auto}
+.hsoc a{color:var(--txl);transition:color .2s;display:flex;align-items:center}
+.hsoc a:hover{color:var(--lav-dk)}
+.hsoc svg{width:17px;height:17px}
+.hemail{font-size:.77rem;color:var(--txl);border-bottom:1px solid transparent;transition:all .2s}
+.hemail:hover{color:var(--lav-dk);border-color:var(--lav-dk)}
+.hlang{display:flex;gap:3px}
+.hlang button{padding:4px 9px;border-radius:20px;font-size:.77rem;font-weight:500;color:var(--txm);transition:all .2s}
+.hlang button.on{background:var(--lav-dk);color:#fff}
+.brg{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer;margin-left:auto}
+.brg span{width:22px;height:2px;background:var(--tx);border-radius:2px;transition:all .3s;display:block}
+.brg.op span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.brg.op span:nth-child(2){opacity:0}
+.brg.op span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mmenu{display:none;position:fixed;top:var(--hh);left:0;right:0;bottom:0;background:var(--bg);z-index:999;padding:28px;overflow-y:auto;flex-direction:column;gap:4px}
+.mmenu.op{display:flex}
+.mmenu a{font-size:1.05rem;color:var(--tx);padding:13px 0;border-bottom:1px solid var(--bdr)}
+.mm-soc{display:flex;gap:16px;padding-top:18px}
+.mm-soc svg{width:21px;height:21px}
+.mm-lang{display:flex;gap:8px;padding-top:14px}
+.mm-lang button{padding:7px 14px;border-radius:20px;font-size:.88rem;font-weight:500;border:1.5px solid var(--bdr);color:var(--txm)}
+.mm-lang button.on{background:var(--lav-dk);color:#fff;border-color:var(--lav-dk)}
+
+/* ═══ HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;margin-top:var(--hh);overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#352660 0%,#5A4685 40%,#7C6BA0 70%,#9E90B8 100%)}
+.hc{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.07)}
+.hc1{width:580px;height:580px;top:-80px;right:-80px}
+.hc2{width:380px;height:380px;bottom:-60px;left:-50px;border-color:rgba(232,170,136,.13)}
+.hc3{width:180px;height:180px;top:35%;right:22%;border-color:rgba(122,158,126,.13)}
+.hdots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);background-size:32px 32px}
+.hero-in{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;width:100%;padding:80px 0}
+.htag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-radius:40px;padding:6px 16px;font-size:.76rem;color:rgba(255,255,255,.78);letter-spacing:.07em;margin-bottom:22px}
+.htag span{width:6px;height:6px;border-radius:50%;background:var(--pch);display:inline-block}
+.h1{font-family:var(--fh);font-size:clamp(2.3rem,4.5vw,3.9rem);font-weight:400;line-height:1.12;color:#fff;margin-bottom:22px}
+.h1 em{font-style:italic;color:var(--lav)}
+.hsub{font-size:.98rem;color:rgba(255,255,255,.66);line-height:1.76;margin-bottom:38px;max-width:460px}
+.hbtns{display:flex;gap:13px;flex-wrap:wrap}
+.hstats{display:flex;gap:28px;margin-top:44px;padding-top:36px;border-top:1px solid rgba(255,255,255,.1)}
+.hstat .n{font-family:var(--fh);font-size:1.9rem;color:#fff;line-height:1}
+.hstat .l{font-size:.76rem;color:rgba(255,255,255,.48);margin-top:4px}
+.hcard{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:32px;color:#fff}
+.hct{display:flex;align-items:center;gap:11px;margin-bottom:24px}
+.hct img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1)}
+.hct-tx .nm{font-weight:500;font-size:.93rem}
+.hct-tx .rl{font-size:.76rem;color:rgba(255,255,255,.5)}
+.hct-title{font-family:var(--fh);font-size:1.28rem;margin-bottom:8px}
+.hcc{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.hctag{background:rgba(255,255,255,.1);border-radius:20px;padding:4px 12px;font-size:.73rem;color:rgba(255,255,255,.78)}
+.hcm{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+.hcmi{background:rgba(255,255,255,.06);border-radius:10px;padding:11px}
+.hcmi .mk{font-size:.7rem;color:rgba(255,255,255,.42);margin-bottom:3px}
+.hcmi .mv{font-size:.92rem;font-weight:500}
+.hcp{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}
+.hcp .p{font-family:var(--fh);font-size:1.75rem;color:var(--lav)}
+.hcp .pl{font-size:.72rem;color:rgba(255,255,255,.42)}
+
+/* ═══ О НАС */
+.abg{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:center}
+.abi{position:relative}
+.abi-main{width:100%;height:490px;object-fit:cover;border-radius:22px}
+.abi-ph{width:100%;height:490px;border-radius:22px;background:linear-gradient(135deg,var(--lav-lt),var(--bdr));display:flex;align-items:center;justify-content:center;font-size:5rem}
+.abfl{position:absolute;bottom:-24px;right:-24px;background:var(--lav-dp);color:#fff;padding:22px 26px;border-radius:18px;text-align:center;box-shadow:var(--shl)}
+.abfl .fn{font-family:var(--fh);font-size:2.1rem;line-height:1}
+.abfl .fl{font-size:.76rem;opacity:.65;margin-top:4px}
+.abt p{color:var(--txm);line-height:1.8;margin-bottom:16px;font-size:.96rem}
+.s4{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+.s4i{background:var(--lav-lt);border-radius:var(--r);padding:18px;text-align:center}
+.s4i .sn{font-family:var(--fh);font-size:1.9rem;color:var(--lav-dk);line-height:1}
+.s4i .sl{font-size:.78rem;color:var(--txm);margin-top:5px}
+
+/* ═══ ПРЕИМУЩЕСТВА */
+.adv6{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.advi{background:var(--wh);border:1px solid var(--bdr);border-radius:18px;padding:30px 26px;transition:all .3s}
+.advi:hover{box-shadow:var(--shl);transform:translateY(-4px);border-color:var(--lav)}
+.adv-ic{width:50px;height:50px;border-radius:13px;background:var(--lav-lt);display:flex;align-items:center;justify-content:center;font-size:1.45rem;margin-bottom:16px}
+.adv-t{font-family:var(--fh);font-size:1.02rem;margin-bottom:9px}
+.adv-p{font-size:.87rem;color:var(--txm);line-height:1.7}
+
+/* ═══ КОМАНДА */
+.tm3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.tmc{background:var(--wh);border-radius:22px;overflow:hidden;border:1px solid var(--bdr);transition:all .3s}
+.tmc:hover{box-shadow:var(--shl);transform:translateY(-4px)}
+.tmc img{width:100%;height:290px;object-fit:cover}
+.tmc-ph{width:100%;height:290px;background:linear-gradient(155deg,var(--lav-lt),var(--bdr));display:flex;align-items:center;justify-content:center;font-size:4rem}
+.tmc-b{padding:22px}
+.tmc-nm{font-family:var(--fh);font-size:1.18rem;margin-bottom:4px}
+.tmc-rl{font-size:.78rem;color:var(--lav-dk);font-weight:500;text-transform:uppercase;letter-spacing:.07em;margin-bottom:11px}
+.tmc-bi{font-size:.87rem;color:var(--txm);line-height:1.65}
+
+/* ═══ FLIP КАРТОЧКИ */
+.tours3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.fc{height:440px;perspective:1400px;cursor:pointer}
+.fc-in{position:relative;width:100%;height:100%;transition:transform .65s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+.fc.fl .fc-in,.fc:hover .fc-in{transform:rotateY(180deg)}
+.ff,.fb{position:absolute;inset:0;border-radius:22px;backface-visibility:hidden;overflow:hidden}
+.ff{background:var(--wh);border:1px solid var(--bdr)}
+.fb{background:linear-gradient(155deg,var(--lav-dp) 0%,#3D2D6A 100%);color:#fff;transform:rotateY(180deg);padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.ff-img{width:100%;height:228px;object-fit:cover}
+.ff-ph{width:100%;height:228px;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.ff-bd{padding:18px}
+.ff-bx{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.ff-ti{font-family:var(--fh);font-size:1.08rem;margin-bottom:7px;line-height:1.35}
+.ff-mt{display:flex;gap:12px;font-size:.77rem;color:var(--txl);flex-wrap:wrap}
+.ff-pr{font-family:var(--fh);font-size:1.38rem;color:var(--lav-dk);margin-top:7px}
+.fb-ti{font-family:var(--fh);font-size:1.18rem;font-weight:400;margin-bottom:10px}
+.fb-de{font-size:.87rem;color:rgba(255,255,255,.74);line-height:1.76;flex:1}
+.fb-rt{font-size:.77rem;color:var(--lav);margin-top:9px;opacity:.78}
+.fb-ac{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+
+/* ═══ МЕРОПРИЯТИЯ */
+.ev-wr{overflow:hidden}
+.ev-tr{display:flex;gap:22px;transition:transform .5s ease}
+.ev-tr .fc{flex:0 0 calc(33.333% - 15px)}
+.ef-back{background:linear-gradient(155deg,#244A35 0%,#163024 100%);color:#fff;transform:rotateY(180deg);padding:26px;display:flex;flex-direction:column;justify-content:space-between}
+.cctrl{display:flex;gap:11px;justify-content:center;margin-top:26px}
+.cbtn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;color:var(--txm);font-size:.95rem;transition:all .2s;cursor:pointer;background:var(--wh)}
+.cbtn:hover{border-color:var(--lav-dk);color:var(--lav-dk)}
+.cbtn-dk{background:transparent;border-color:rgba(255,255,255,.18);color:rgba(255,255,255,.45)}
+.cbtn-dk:hover{border-color:var(--lav);color:var(--lav)}
+
+/* ═══ ВИДЕО */
+.vid-wr{overflow:hidden}
+.vid-tr{display:flex;gap:22px;transition:transform .5s ease}
+.vcard{flex:0 0 calc(33.333% - 15px);border-radius:18px;overflow:hidden;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.vth{position:relative;padding-top:56.25%;cursor:pointer}
+.vth img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vth iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.vplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;background:rgba(184,169,204,.88);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;pointer-events:none;transition:transform .2s}
+.vth:hover .vplay{transform:translate(-50%,-50%) scale(1.1)}
+.vinf{padding:14px}
+.vinf-t{font-size:.88rem;color:#fff;font-weight:500}
+.vinf-a{font-size:.76rem;color:rgba(255,255,255,.42);margin-top:3px}
+.rcta{text-align:center;margin-top:48px;padding:32px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:18px}
+.rcta p{color:rgba(255,255,255,.58);margin-bottom:14px;font-size:.94rem}
+
+/* ═══ СООБЩЕСТВО */
+.comm{background:linear-gradient(135deg,var(--lav-dp),#6A4A8E);border-radius:26px;padding:68px 72px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.comm::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.045) 1px,transparent 1px);background-size:26px 26px}
+.comm>*{position:relative;z-index:1}
+.comm .h2{color:#fff}
+.comm .sub{color:rgba(255,255,255,.62);margin:0 auto 32px}
+
+/* ═══ БЛОГ */
+.bl3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.blc{background:var(--wh);border-radius:18px;overflow:hidden;border:1px solid var(--bdr);display:flex;flex-direction:column;transition:all .3s}
+.blc:hover{box-shadow:var(--shl);transform:translateY(-4px)}
+.blc img{width:100%;height:206px;object-fit:cover}
+.blc-ph{width:100%;height:206px;background:linear-gradient(135deg,var(--grn-lt),var(--lav-lt));display:flex;align-items:center;justify-content:center;font-size:2.8rem}
+.blc-b{padding:20px;flex:1;display:flex;flex-direction:column}
+.blc-tg{font-size:.72rem;color:var(--lav-dk);font-weight:500;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.blc-ti{font-family:var(--fh);font-size:1.03rem;line-height:1.44;margin-bottom:9px}
+.blc-ex{font-size:.85rem;color:var(--txm);line-height:1.64;flex:1}
+.blc-dt{font-size:.74rem;color:var(--txl);margin-top:13px}
+
+/* ═══ РАССЫЛКА */
+.nlg{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:center}
+.nlf{display:flex;flex-direction:column;gap:11px}
+.nlf input{padding:13px 20px;border:1.5px solid var(--bdr);border-radius:40px;font-family:var(--fb);font-size:.9rem;background:var(--wh);outline:none;transition:border-color .2s;width:100%}
+.nlf input:focus{border-color:var(--lav-dk)}
+.nl-note{font-size:.75rem;color:var(--txl)}
+#nlMsg{font-size:.82rem;color:var(--grn)}
+
+/* ═══ FAQ */
+.faqw{max-width:740px;margin:0 auto;display:flex;flex-direction:column;gap:2px}
+.fi{border:1px solid var(--bdr);border-radius:var(--rs);overflow:hidden;background:var(--wh)}
+.fq{width:100%;text-align:left;padding:17px 22px;display:flex;justify-content:space-between;align-items:center;gap:13px;font-size:.92rem;color:var(--tx);cursor:pointer;transition:background .2s;background:none}
+.fq:hover{background:var(--lav-lt)}
+.fq.on{background:var(--lav-lt);color:var(--lav-dk)}
+.fi-ic{font-size:1.1rem;flex-shrink:0;transition:transform .3s;color:var(--lav-dk)}
+.fq.on .fi-ic{transform:rotate(45deg)}
+.fa{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;font-size:.87rem;color:var(--txm);line-height:1.76}
+.fa.on{max-height:300px;padding:0 22px 18px}
+.fa a{color:var(--lav-dk)}
+
+/* ═══ ФУТЕР */
+.ftr{background:var(--lav-dp);color:#fff;padding:68px 0 26px}
+.ft-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:52px}
+.ft-logo{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.ft-logo img{height:40px;width:40px;object-fit:contain;filter:brightness(0) invert(1)}
+.ft-logo span{font-family:var(--fh);font-size:1.18rem;color:#fff}
+.ft-desc{font-size:.85rem;color:rgba(255,255,255,.48);line-height:1.75;margin-bottom:14px}
+.ft-soc{display:flex;gap:12px;flex-wrap:wrap}
+.ft-soc a{color:rgba(255,255,255,.42);transition:color .2s;display:flex}
+.ft-soc a:hover{color:var(--lav)}
+.ft-soc svg{width:18px;height:18px}
+.ft-col h4{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:13px}
+.ft-col ul{display:flex;flex-direction:column;gap:8px}
+.ft-col ul a{font-size:.85rem;color:rgba(255,255,255,.52);transition:color .2s}
+.ft-col ul a:hover{color:var(--lav)}
+.ft-part{padding:32px 0;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:30px}
+.ft-part h4{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:20px;text-align:center}
+.pcirc{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.pc{width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;transition:border-color .2s;overflow:hidden;font-size:.58rem;color:rgba(255,255,255,.28);text-align:center;padding:4px}
+.pc:hover{border-color:var(--lav)}
+.ft-nl{margin-bottom:32px}
+.ft-nl p{font-size:.84rem;color:rgba(255,255,255,.42);margin-bottom:9px}
+.ft-nl form{display:flex;gap:8px;max-width:360px}
+.ft-nl input{flex:1;padding:10px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:40px;color:#fff;font-family:var(--fb);font-size:.85rem;outline:none}
+.ft-nl input::placeholder{color:rgba(255,255,255,.28)}
+.ft-nl input:focus{border-color:var(--lav)}
+.ft-nl button{padding:10px 18px;background:var(--lav-dk);color:#fff;border-radius:40px;font-size:.83rem;font-family:var(--fb);transition:background .2s}
+.ft-nl button:hover{background:#7a6a99}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;font-size:.77rem;color:rgba(255,255,255,.28);flex-wrap:wrap;gap:10px}
+.ft-bot a{color:rgba(255,255,255,.38);transition:color .2s}
+.ft-bot a:hover{color:var(--lav)}
+
+/* ═══ АНИМАЦИИ */
+.fu{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.fu.v{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ═══ АДАПТИВ */
+@media(max-width:1024px){
+  .hero-in{grid-template-columns:1fr;gap:36px;padding:56px 0}
+  .hcard{display:none}
+  .abg{grid-template-columns:1fr;gap:44px}
+  .abfl{right:0;bottom:-14px}
+  .adv6{grid-template-columns:repeat(2,1fr)}
+  .tm3{grid-template-columns:repeat(2,1fr)}
+  .tours3{grid-template-columns:repeat(2,1fr)}
+  .ev-tr .fc{flex:0 0 calc(50% - 11px)}
+  .vid-tr .vcard{flex:0 0 calc(50% - 11px)}
+  .bl3{grid-template-columns:repeat(2,1fr)}
+  .nlg{grid-template-columns:1fr;gap:28px}
+  .ft-top{grid-template-columns:1fr 1fr;gap:28px}
+  .comm{padding:44px 32px}
+  .hsoc,.hemail{display:none}
+}
+@media(max-width:768px){
+  :root{--hh:60px}
+  .sec{padding:60px 0}
+  .wrap{padding:0 16px}
+  .hnav,.hlang,.hdr-cta{display:none}
+  .brg{display:flex}
+  .h1{font-size:2.1rem}
+  .hstats{gap:18px;flex-wrap:wrap}
+  .adv6,.tm3,.tours3,.bl3{grid-template-columns:1fr}
+  .ev-tr .fc{flex:0 0 100%}
+  .vid-tr .vcard{flex:0 0 100%}
+  .abfl{position:static;margin-top:14px;display:inline-block}
+  .comm{padding:32px 18px}
+  .hbtns{flex-direction:column}
+  .hbtns .btn{width:100%;justify-content:center}
+  .ft-top{grid-template-columns:1fr;gap:24px}
+  .ft-bot{flex-direction:column;text-align:center}
+  .ft-nl form{flex-direction:column}
+  .ft-nl button{width:100%}
+  .fc:hover .fc-in{transform:none}
+}
+</style>
 </head>
 <body>
 
-  <!-- ШАПКА -->
-  <header class="header" id="header"></header>
+<!-- ══════════ ШАПКА -->
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <div class="hi">
+      <a href="#" class="logo">
+        <img src="logo.png" alt="NovaTravel" onerror="this.style.display='none'">
+        <span class="logo-n">NovaTravel</span>
+      </a>
+      <nav class="hnav">
+        <a href="#tours">Туры</a>
+        <a href="#events">Мероприятия</a>
+        <a href="#blog">Блог</a>
+        <a href="#about">О нас</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <div class="hsoc">
+        <a href="https://www.facebook.com/share/15kHXeQAYm/" target="_blank" title="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/novatravel.world" target="_blank" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://t.me/novatravel_world" target="_blank" title="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg></a>
+        <a href="https://youtube.com/@novatravel-club" target="_blank" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        <a href="https://www.pinterest.com/NovaTravelWrld/" target="_blank" title="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.852 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.772 0 3.137-1.868 3.137-4.568 0-2.386-1.717-4.054-4.165-4.054-2.837 0-4.499 2.127-4.499 4.326 0 .857.33 1.775.741 2.276a.3.3 0 0 1 .069.288c-.076.31-.244.995-.277 1.134-.044.183-.146.222-.337.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg></a>
+      </div>
+      <a href="mailto:novatravel.world@gmail.com" class="hemail">novatravel.world@gmail.com</a>
+      <div class="hlang">
+        <button class="on" onclick="setLang('ru')">RU</button>
+        <button onclick="setLang('en')">EN</button>
+      </div>
+      <a href="mailto:novatravel.world@gmail.com" class="btn bp bsm hdr-cta" style="margin-left:4px">Написать нам</a>
+      <div class="brg" id="brg" onclick="toggleM()"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  <nav class="mmenu" id="mmenu">
+    <a href="#tours" onclick="toggleM()">Туры</a>
+    <a href="#events" onclick="toggleM()">Мероприятия</a>
+    <a href="#blog" onclick="toggleM()">Блог</a>
+    <a href="#about" onclick="toggleM()">О нас</a>
+    <a href="#faq" onclick="toggleM()">FAQ</a>
+    <a href="mailto:novatravel.world@gmail.com">novatravel.world@gmail.com</a>
+    <div class="mm-lang">
+      <button class="on" onclick="setLang('ru')">RU</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+    <div class="mm-soc">
+      <a href="https://www.facebook.com/share/15kHXeQAYm/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      <a href="https://www.instagram.com/novatravel.world" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a href="https://t.me/novatravel_world" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg></a>
+      <a href="https://youtube.com/@novatravel-club" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+    </div>
+  </nav>
+</header>
 
-  <!-- HERO -->
-  <section class="hero" id="hero"></section>
+<!-- ══════════ HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hc hc1"></div><div class="hc hc2"></div><div class="hc hc3"></div>
+  <div class="hdots"></div>
+  <div class="wrap" style="width:100%">
+    <div class="hero-in">
+      <div>
+        <div class="htag"><span></span>Кыргызстан · Казахстан · Узбекистан · Таджикистан · Туркменистан</div>
+        <h1 class="h1">Авторские туры<br>по <em>архитектуре</em><br>Центральной Азии</h1>
+        <p class="hsub">Откройте душу Шёлкового пути вместе с нами — малые группы, местные эксперты и подлинные встречи с историей</p>
+        <div class="hbtns">
+          <a href="#tours" class="btn bp">Смотреть туры</a>
+          <a href="mailto:novatravel.world@gmail.com" class="btn bw">Написать нам</a>
+        </div>
+        <div class="hstats">
+          <div class="hstat"><div class="n">5</div><div class="l">стран ЦА</div></div>
+          <div class="hstat"><div class="n">50+</div><div class="l">туров</div></div>
+          <div class="hstat"><div class="n">500+</div><div class="l">гостей</div></div>
+          <div class="hstat"><div class="n">7</div><div class="l">лет опыта</div></div>
+        </div>
+      </div>
+      <div class="hcard">
+        <div class="hct">
+          <img src="images/team/team-1.jpg" alt="Гид" onerror="this.style.opacity=0">
+          <div class="hct-tx"><div class="nm">Ваш гид</div><div class="rl">Архитектор · Историк</div></div>
+          <span class="badge bx-hit" style="margin-left:auto">ХИТ</span>
+        </div>
+        <div class="hct-title">Великий Шёлковый путь</div>
+        <div class="hcc">
+          <span class="hctag">🇺🇿 Узбекистан</span><span class="hctag">🇹🇯 Таджикистан</span><span class="hctag">🇰🇬 Кыргызстан</span>
+        </div>
+        <div class="hcm">
+          <div class="hcmi"><div class="mk">Дней</div><div class="mv">12</div></div>
+          <div class="hcmi"><div class="mk">Группа</div><div class="mv">до 12</div></div>
+          <div class="hcmi"><div class="mk">Следующий</div><div class="mv">15 мая</div></div>
+          <div class="hcmi"><div class="mk">Уровень</div><div class="mv">Умеренный</div></div>
+        </div>
+        <div class="hcp">
+          <div><div class="pl">Стоимость от</div><div class="p">$2 200</div></div>
+          <a href="#tours" class="btn bp bsm">Подробнее</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- О НАС -->
-  <section class="section" id="about"></section>
+<!-- ══════════ О НАС -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="abg">
+      <div class="abi fu">
+        <div class="abi-ph">🏛️</div>
+        <div class="abfl"><div class="fn">7</div><div class="fl">лет в пути</div></div>
+      </div>
+      <div class="abt fu d2">
+        <span class="lbl">О нас</span>
+        <h2 class="h2">Мы открываем <em>настоящую</em> Центральную Азию</h2>
+        <p>NovaTravel — авторское бюро архитектурных туров по Кыргызстану, Казахстану, Узбекистану, Таджикистану и Туркменистану. Мы создаём маршруты, которые раскрывают душу Шёлкового пути.</p>
+        <p>Каждый тур разработан архитектором и историком — не стандартный пакет, а живое погружение в культуру через пространство, форму и материал.</p>
+        <div class="s4">
+          <div class="s4i"><div class="sn">5</div><div class="sl">стран ЦА</div></div>
+          <div class="s4i"><div class="sn">50+</div><div class="sl">туров проведено</div></div>
+          <div class="s4i"><div class="sn">500+</div><div class="sl">довольных гостей</div></div>
+          <div class="s4i"><div class="sn">12</div><div class="sl">макс. группа</div></div>
+        </div>
+        <div style="margin-top:28px"><a href="mailto:novatravel.world@gmail.com" class="btn bp">Написать нам</a></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="divider"></div>
+<!-- ══════════ ПРЕИМУЩЕСТВА -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sh c fu"><span class="lbl">NovaTravel</span><h2 class="h2">Наши <em>преимущества</em></h2></div>
+    <div class="adv6">
+      <div class="advi fu d1"><div class="adv-ic">🏛️</div><div class="adv-t">Авторский подход</div><div class="adv-p">Каждый маршрут разработан архитектором и историком — не стандартный турпакет</div></div>
+      <div class="advi fu d2"><div class="adv-ic">🗺️</div><div class="adv-t">5 стран ЦА</div><div class="adv-p">Кыргызстан · Казахстан · Узбекистан · Таджикистан · Туркменистан</div></div>
+      <div class="advi fu d3"><div class="adv-ic">👥</div><div class="adv-t">Малые группы</div><div class="adv-p">Максимум 12 человек — глубокое погружение, а не толпа туристов</div></div>
+      <div class="advi fu d4"><div class="adv-ic">🤝</div><div class="adv-t">Местные эксперты</div><div class="adv-p">Архитекторы, историки и художники из каждого региона</div></div>
+      <div class="advi fu"><div class="adv-ic">🎨</div><div class="adv-t">Мастер-классы</div><div class="adv-p">Живопись, керамика, войлок — встречи с мастерами в их мастерских</div></div>
+      <div class="advi fu"><div class="adv-ic">♻️</div><div class="adv-t">Ответственный туризм</div><div class="adv-p">Поддерживаем местные сообщества и традиционные ремёсла</div></div>
+    </div>
+  </div>
+</section>
 
-  <!-- ПРЕИМУЩЕСТВА -->
-  <section class="section section-alt" id="advantages"></section>
+<!-- ══════════ КОМАНДА -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sh fu"><span class="lbl">NovaTravel</span><h2 class="h2">Наша <em>команда</em></h2></div>
+    <div class="tm3">
+      <div class="tmc fu d1"><div class="tmc-ph">👤</div><div class="tmc-b"><div class="tmc-nm">Имя Фамилия</div><div class="tmc-rl">Основатель и главный гид</div><div class="tmc-bi">Архитектор, историк и страстный путешественник. Знает каждый камень Шёлкового пути.</div></div></div>
+      <div class="tmc fu d2"><div class="tmc-ph">👤</div><div class="tmc-b"><div class="tmc-nm">Имя Фамилия</div><div class="tmc-rl">Куратор маршрутов</div><div class="tmc-bi">Специалист по Центральной Азии. Разрабатывает маршруты уже 5 лет.</div></div></div>
+      <div class="tmc fu d3"><div class="tmc-ph">👤</div><div class="tmc-b"><div class="tmc-nm">Имя Фамилия</div><div class="tmc-rl">Менеджер по гостям</div><div class="tmc-bi">Отвечает за каждую деталь — от бронирования до финального отзыва.</div></div></div>
+    </div>
+  </div>
+</section>
 
-  <div class="divider"></div>
+<!-- ══════════ ТУРЫ — ФЛИП КАРТОЧКИ -->
+<section class="sec sec-alt" id="tours">
+  <div class="wrap">
+    <div class="sh fu">
+      <span class="lbl">Маршруты</span>
+      <h2 class="h2">Наши <em>туры</em></h2>
+      <p class="sub">Наведи на карточку — увидишь описание. На телефоне — нажми.</p>
+    </div>
+    <div class="tours3">
+      <div class="fc fu d1" onclick="this.classList.toggle('fl')">
+        <div class="fc-in">
+          <div class="ff">
+            <div class="ff-ph" style="background:linear-gradient(135deg,#EDE8F5,#C4B5D4)">🏛️</div>
+            <div class="ff-bd">
+              <div class="ff-bx"><span class="badge bx-hit">ХИТ</span></div>
+              <div class="ff-ti">Великий Шёлковый путь</div>
+              <div class="ff-mt"><span>📅 12 дней</span><span>👥 до 12</span><span>🇺🇿🇹🇯</span></div>
+              <div class="ff-pr">от $2 200</div>
+            </div>
+          </div>
+          <div class="fb">
+            <div>
+              <div class="fb-ti">Великий Шёлковый путь</div>
+              <div class="fb-de">Путешествие по легендарным городам — Самарканд, Бухара, Хива, Душанбе. Медресе, мечети, базары и мастер-класс по керамике.</div>
+              <div class="fb-rt">Самарканд → Бухара → Хива → Душанбе</div>
+            </div>
+            <div class="fb-ac">
+              <a href="#" class="btn bp bfull" onclick="event.stopPropagation()">Подробнее о туре →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fc fu d2" onclick="this.classList.toggle('fl')">
+        <div class="fc-in">
+          <div class="ff">
+            <div class="ff-ph" style="background:linear-gradient(135deg,var(--grn-lt),var(--grn))">🏔️</div>
+            <div class="ff-bd">
+              <div class="ff-bx"><span class="badge bx-new">НОВИНКА</span></div>
+              <div class="ff-ti">Кыргызстан: Кочевая Архитектура</div>
+              <div class="ff-mt"><span>📅 8 дней</span><span>👥 до 10</span><span>🇰🇬</span></div>
+              <div class="ff-pr">от $1 400</div>
+            </div>
+          </div>
+          <div class="fb">
+            <div>
+              <div class="fb-ti">Кочевая Архитектура</div>
+              <div class="fb-de">Юрты, каменные изваяния и горные перевалы — живая архитектура кочевников. Ночь в традиционной юрте, мастер-класс по войлоку.</div>
+              <div class="fb-rt">Бишкек → Чолпон-Ата → Каракол → Ош</div>
+            </div>
+            <div class="fb-ac">
+              <a href="#" class="btn bp bfull" onclick="event.stopPropagation()">Подробнее о туре →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fc fu d3" onclick="this.classList.toggle('fl')">
+        <div class="fc-in">
+          <div class="ff">
+            <div class="ff-ph" style="background:linear-gradient(135deg,var(--pch-lt),var(--pch))">🌄</div>
+            <div class="ff-bd">
+              <div class="ff-bx"><span class="badge bx-hit">ХИТ</span></div>
+              <div class="ff-ti">Памирский Тракт</div>
+              <div class="ff-mt"><span>📅 10 дней</span><span>👥 до 8</span><span>🇹🇯🇰🇬</span></div>
+              <div class="ff-pr">от $1 900</div>
+            </div>
+          </div>
+          <div class="fb">
+            <div>
+              <div class="fb-ti">Памирский Тракт</div>
+              <div class="fb-de">Легендарная дорога на «крыше мира» — горные крепости, памирские деревни на высоте 4000м.</div>
+              <div class="fb-rt">Душанбе → Хорог → Мургаб → Ош</div>
+            </div>
+            <div class="fb-ac">
+              <a href="#" class="btn bp bfull" onclick="event.stopPropagation()">Подробнее о туре →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:38px" class="fu"><a href="#" class="btn bo">Все туры</a></div>
+  </div>
+</section>
 
-  <!-- КОМАНДА -->
-  <section class="section" id="team"></section>
+<!-- ══════════ МЕРОПРИЯТИЯ — ФЛИП КАРУСЕЛЬ -->
+<section class="sec sec-grn" id="events">
+  <div class="wrap">
+    <div class="sh fu">
+      <span class="lbl" style="color:var(--grn)">Мероприятия</span>
+      <h2 class="h2">Онлайн и <em>офлайн</em> события</h2>
+      <p class="sub">Наведи на карточку — увидишь полное описание и сможешь зарегистрироваться</p>
+    </div>
+    <div class="ev-wr">
+      <div class="ev-tr" id="evTr">
+        <div class="fc" onclick="this.classList.toggle('fl')">
+          <div class="fc-in">
+            <div class="ff"><div class="ff-ph" style="background:linear-gradient(135deg,var(--lav-lt),var(--lav))">🎤</div>
+              <div class="ff-bd"><div class="ff-bx"><span class="badge bx-on">ОНЛАЙН</span><span class="badge bx-free">БЕСПЛАТНО</span></div>
+                <div class="ff-ti">Архитектура ЦА: онлайн-лекция</div>
+                <div style="font-size:.8rem;color:var(--lav-dk);margin:.5rem 0">📅 25 апреля · 19:00</div>
+                <div style="font-size:.84rem;color:var(--txm)">Вводная лекция об архитектурных традициях Шёлкового пути</div>
+              </div>
+            </div>
+            <div class="ef-back fb">
+              <div><div class="ff-bx" style="margin-bottom:12px"><span class="badge bx-on">ОНЛАЙН</span><span class="badge bx-free">БЕСПЛАТНО</span></div>
+                <div class="fb-ti">Архитектура ЦА: лекция</div>
+                <div style="font-size:.78rem;color:var(--lav);margin-bottom:11px">📅 25 апреля 2025 · 19:00 МСК</div>
+                <div class="fb-de">Разберём ключевые архитектурные стили ЦА — от тимуридских медресе до советского модернизма. Zoom, 90 минут, вопросы-ответы.</div>
+              </div>
+              <a href="#" class="btn bp bfull" style="margin-top:16px" onclick="event.stopPropagation()">Зарегистрироваться</a>
+            </div>
+          </div>
+        </div>
+        <div class="fc" onclick="this.classList.toggle('fl')">
+          <div class="fc-in">
+            <div class="ff"><div class="ff-ph" style="background:linear-gradient(135deg,var(--grn-lt),var(--grn))">🧶</div>
+              <div class="ff-bd"><div class="ff-bx"><span class="badge bx-off">ОФЛАЙН</span><span class="badge bx-paid">$25</span></div>
+                <div class="ff-ti">Мастер-класс по кыргызскому войлоку</div>
+                <div style="font-size:.8rem;color:var(--grn);margin:.5rem 0">📅 10 мая · 14:00 · Бишкек</div>
+                <div style="font-size:.84rem;color:var(--txm)">Создай войлочный сувенир под руководством мастерицы</div>
+              </div>
+            </div>
+            <div class="ef-back fb">
+              <div><div class="ff-bx" style="margin-bottom:12px"><span class="badge bx-off">ОФЛАЙН</span><span class="badge bx-paid">$25</span></div>
+                <div class="fb-ti">Мастер-класс по войлоку</div>
+                <div style="font-size:.78rem;color:var(--lav);margin-bottom:11px">📅 10 мая 2025 · 14:00 · Бишкек</div>
+                <div class="fb-de">Практический мастер-класс по традиционному войлоковалянию. Все материалы включены. Адрес будет прислан после регистрации. Длительность 3 часа.</div>
+              </div>
+              <a href="#" class="btn bp bfull" style="margin-top:16px" onclick="event.stopPropagation()">Зарегистрироваться</a>
+            </div>
+          </div>
+        </div>
+        <div class="fc" onclick="this.classList.toggle('fl')">
+          <div class="fc-in">
+            <div class="ff"><div class="ff-ph" style="background:linear-gradient(135deg,var(--pch-lt),var(--pch))">📋</div>
+              <div class="ff-bd"><div class="ff-bx"><span class="badge bx-on">ОНЛАЙН</span><span class="badge bx-free">БЕСПЛАТНО</span></div>
+                <div class="ff-ti">Как подготовиться к туру по ЦА</div>
+                <div style="font-size:.8rem;color:var(--lav-dk);margin:.5rem 0">📅 15 мая · 18:00</div>
+                <div style="font-size:.84rem;color:var(--txm)">Визы, документы, упаковка — полный гайд от наших гидов</div>
+              </div>
+            </div>
+            <div class="ef-back fb">
+              <div><div class="ff-bx" style="margin-bottom:12px"><span class="badge bx-on">ОНЛАЙН</span><span class="badge bx-free">БЕСПЛАТНО</span></div>
+                <div class="fb-ti">Подготовка к туру по ЦА</div>
+                <div style="font-size:.78rem;color:var(--lav);margin-bottom:11px">📅 15 мая 2025 · 18:00 МСК</div>
+                <div class="fb-de">Что взять с собой, как оформить визы, страховку, что ожидать по питанию и условиям. Прямой эфир с вопросами.</div>
+              </div>
+              <a href="#" class="btn bp bfull" style="margin-top:16px" onclick="event.stopPropagation()">Зарегистрироваться</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cctrl"><button class="cbtn" onclick="sEv(-1)">←</button><button class="cbtn" onclick="sEv(1)">→</button></div>
+  </div>
+</section>
 
-  <div class="divider"></div>
+<!-- ══════════ ВИДЕО ОТЗЫВЫ -->
+<section class="sec sec-dk dk" id="reviews">
+  <div class="wrap">
+    <div class="sh c fu dk"><span class="lbl">Отзывы</span><h2 class="h2">Что говорят <em>участники</em></h2></div>
+    <div class="vid-wr">
+      <div class="vid-tr" id="vidTr">
+        <div class="vcard fu d1"><div class="vth" onclick="pVid(this,'YOUTUBE_ID_1')"><img src="https://img.youtube.com/vi/YOUTUBE_ID_1/hqdefault.jpg" alt="Отзыв" onerror="this.style.opacity=0"><div class="vplay">▶</div></div><div class="vinf"><div class="vinf-t">Отзыв: тур по Узбекистану</div><div class="vinf-a">Анна, Москва</div></div></div>
+        <div class="vcard fu d2"><div class="vth" onclick="pVid(this,'YOUTUBE_ID_2')"><img src="https://img.youtube.com/vi/YOUTUBE_ID_2/hqdefault.jpg" alt="Отзыв" onerror="this.style.opacity=0"><div class="vplay">▶</div></div><div class="vinf"><div class="vinf-t">Отзыв: Памирский тракт</div><div class="vinf-a">Сергей, Алматы</div></div></div>
+        <div class="vcard fu d3"><div class="vth" onclick="pVid(this,'YOUTUBE_ID_3')"><img src="https://img.youtube.com/vi/YOUTUBE_ID_3/hqdefault.jpg" alt="Отзыв" onerror="this.style.opacity=0"><div class="vplay">▶</div></div><div class="vinf"><div class="vinf-t">Отзыв: Кыргызстан</div><div class="vinf-a">Мария, Бишкек</div></div></div>
+      </div>
+    </div>
+    <div class="cctrl" style="margin-top:22px"><button class="cbtn cbtn-dk" onclick="sVid(-1)">←</button><button class="cbtn cbtn-dk" onclick="sVid(1)">→</button></div>
+    <div class="rcta fu"><p>Были в туре с нами? Поделитесь впечатлениями!</p><a href="https://g.page/r/CVhPVdtgUiC2EBI/review" target="_blank" class="btn bp">Оставить отзыв в Google</a></div>
+  </div>
+</section>
 
-  <!-- ТУРЫ -->
-  <section class="section section-alt" id="tours"></section>
+<!-- ══════════ СООБЩЕСТВО -->
+<section class="sec">
+  <div class="wrap">
+    <div class="comm fu">
+      <span class="lbl" style="color:var(--lav)">Присоединяйся</span>
+      <h2 class="h2">Вступить в <em>сообщество</em></h2>
+      <p class="sub">Присоединяйтесь к сообществу путешественников и ценителей архитектуры ЦА — закрытые лекции, ранний доступ к турам, живые встречи</p>
+      <a href="mailto:novatravel.world@gmail.com?subject=Хочу вступить в сообщество NovaTravel" class="btn bw">Написать нам о вступлении</a>
+    </div>
+  </div>
+</section>
 
-  <div class="divider"></div>
+<!-- ══════════ БЛОГ -->
+<section class="sec sec-alt" id="blog">
+  <div class="wrap">
+    <div class="sh fu"><span class="lbl">Блог</span><h2 class="h2">Статьи об <em>архитектуре</em> ЦА</h2></div>
+    <div class="bl3">
+      <a href="#" class="blc fu d1"><div class="blc-ph">🕌</div><div class="blc-b"><div class="blc-tg">Узбекистан</div><div class="blc-ti">Регистан в Самарканде: архитектурный шедевр Тимуридов</div><div class="blc-ex">Три медресе, один ансамбль — история и геометрия, которые остановили время</div><div class="blc-dt">1 апреля 2025</div></div></a>
+      <a href="#" class="blc fu d2"><div class="blc-ph">🏕️</div><div class="blc-b"><div class="blc-tg">Кыргызстан</div><div class="blc-ti">Юрта как архитектурный текст: читаем кочевой дом</div><div class="blc-ex">Как купол юрты кодирует вселенную и почему это умнее любого современного здания</div><div class="blc-dt">18 марта 2025</div></div></a>
+      <a href="#" class="blc fu d3"><div class="blc-ph">🏔️</div><div class="blc-b"><div class="blc-tg">Таджикистан</div><div class="blc-ti">Памирские деревни: архитектура на крыше мира</div><div class="blc-ex">Традиционный чид-хона — памирский дом с окном в небо и памятью предков в стенах</div><div class="blc-dt">5 марта 2025</div></div></a>
+    </div>
+    <div style="text-align:center;margin-top:36px" class="fu"><a href="#" class="btn bo">Все статьи</a></div>
+  </div>
+</section>
 
-  <!-- МЕРОПРИЯТИЯ -->
-  <section class="section" id="events"></section>
+<!-- ══════════ РАССЫЛКА -->
+<section class="sec">
+  <div class="wrap">
+    <div class="nlg">
+      <div class="fu">
+        <span class="lbl">Рассылка</span>
+        <h2 class="h2">Новые туры — <em>первыми</em></h2>
+        <p class="sub">Новые маршруты, брошюры туров и закрытые предложения — прямо на вашу почту. Без спама.</p>
+      </div>
+      <div class="nlf fu d2">
+        <input type="email" id="nlEmail" placeholder="Ваш email">
+        <button class="btn bp" onclick="subNl()">Подписаться на рассылку</button>
+        <span class="nl-note">Без спама. Только новые туры и полезные материалы.</span>
+        <span id="nlMsg"></span>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="divider"></div>
+<!-- ══════════ FAQ -->
+<section class="sec sec-alt" id="faq">
+  <div class="wrap">
+    <div class="sh c fu"><span class="lbl">FAQ</span><h2 class="h2">Частые <em>вопросы</em></h2></div>
+    <div class="faqw">
+      <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Какой уровень физической подготовки нужен?</span><span class="fi-ic">+</span></button><div class="fa">Зависит от тура — шкала от 1 до 5. Большинство туров — уровень 2–3: много ходьбы, умеренный рельеф. Специальных навыков не нужно.</div></div>
+      <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Нужна ли виза для стран Центральной Азии?</span><span class="fi-ic">+</span></button><div class="fa">Гражданам России, Казахстана, Беларуси — безвизово во все страны ЦА. Гражданам ЕС — зависит от страны. Мы помогаем с оформлением.</div></div>
+      <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Как забронировать тур?</span><span class="fi-ic">+</span></button><div class="fa">Заполните форму на странице тура → мы свяжемся за 24 часа → вносите депозит → место подтверждено.</div></div>
+      <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Что входит в стоимость?</span><span class="fi-ic">+</span></button><div class="fa">Транспорт, проживание, питание по программе, гид, входные билеты, мастер-классы. Авиабилеты, страховка и личные расходы — не включены.</div></div>
+      <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Можно ли заказать индивидуальный тур?</span><span class="fi-ic">+</span></button><div class="fa">Да! Любой тур — индивидуально для вашей даты и состава. Напишите нам: <a href="mailto:novatravel.world@gmail.com">novatravel.world@gmail.com</a></div></div>
+      <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Какова политика отмены?</span><span class="fi-ic">+</span></button><div class="fa">Отмена за 60+ дней — полный возврат. За 30–60 дней — 50%. За 30 дней и менее — депозит не возвращается.</div></div>
+    </div>
+  </div>
+</section>
 
-  <!-- ВИДЕО ОТЗЫВЫ -->
-  <section class="section section-dark" id="video-reviews"></section>
+<!-- ══════════ ФУТЕР -->
+<footer class="ftr" id="contacts">
+  <div class="wrap">
+    <div class="ft-nl"><p>Подпишитесь — новые туры первыми</p><form onsubmit="event.preventDefault();this.querySelector('button').textContent='Спасибо ✓'"><input type="email" placeholder="Ваш email" required><button type="submit">Подписаться</button></form></div>
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo"><img src="logo.png" alt="NT" onerror="this.style.display='none'"><span>NovaTravel</span></div>
+        <p class="ft-desc">Авторские архитектурные туры по Кыргызстану, Казахстану, Узбекистану, Таджикистану и Туркменистану</p>
+        <a href="mailto:novatravel.world@gmail.com" style="font-size:.84rem;color:var(--lav);display:block;margin-bottom:14px">novatravel.world@gmail.com</a>
+        <div class="ft-soc">
+          <a href="https://www.facebook.com/share/15kHXeQAYm/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/novatravel.world" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://t.me/novatravel_world" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg></a>
+          <a href="https://youtube.com/@novatravel-club" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          <a href="https://www.pinterest.com/NovaTravelWrld/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.852 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.772 0 3.137-1.868 3.137-4.568 0-2.386-1.717-4.054-4.165-4.054-2.837 0-4.499 2.127-4.499 4.326 0 .857.33 1.775.741 2.276a.3.3 0 0 1 .069.288c-.076.31-.244.995-.277 1.134-.044.183-.146.222-.337.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>Маршруты</h4><ul><li><a href="#">Великий Шёлковый путь</a></li><li><a href="#">Кочевая архитектура</a></li><li><a href="#">Памирский тракт</a></li><li><a href="#">Все туры →</a></li></ul></div>
+      <div class="ft-col"><h4>Компания</h4><ul><li><a href="#about">О нас</a></li><li><a href="#blog">Блог</a></li><li><a href="#faq">FAQ</a></li><li><a href="https://g.page/r/CVhPVdtgUiC2EBI/review" target="_blank">Оставить отзыв</a></li><li><a href="mailto:novatravel.world@gmail.com?subject=Хочу вступить в сообщество">Вступить в сообщество</a></li></ul></div>
+      <div class="ft-col"><h4>Сотрудничество</h4><ul><li><a href="#">Стать партнёром</a></li><li><a href="#">Стать гидом</a></li><li><a href="#">Стать водителем</a></li><li><a href="#">Предложить жильё</a></li><li><a href="#">Мастер-класс</a></li></ul></div>
+    </div>
+    <div class="ft-part"><h4>Сертификаты и партнёры</h4><div class="pcirc"><div class="pc">Сертификат 1</div><div class="pc">Партнёр 2</div><div class="pc">Партнёр 3</div><div class="pc">Партнёр 4</div><div class="pc">Партнёр 5</div></div></div>
+    <div class="ft-bot"><span>© 2025 NovaTravel. Все права защищены.</span><a href="mailto:novatravel.world@gmail.com">novatravel.world@gmail.com</a></div>
+  </div>
+</footer>
 
-  <!-- СООБЩЕСТВО -->
-  <section class="section" id="community"></section>
+<script>
+window.addEventListener('scroll',()=>document.getElementById('hdr').classList.toggle('sc',scrollY>40));
+function toggleM(){document.getElementById('brg').classList.toggle('op');document.getElementById('mmenu').classList.toggle('op')}
+function setLang(l){document.querySelectorAll('.hlang button,.mm-lang button').forEach(b=>b.classList.toggle('on',b.textContent===l.toUpperCase()))}
 
-  <div class="divider"></div>
-
-  <!-- БЛОГ ПРЕВЬЮ -->
-  <section class="section section-alt" id="blog-preview"></section>
-
-  <div class="divider"></div>
-
-  <!-- РАССЫЛКА -->
-  <section class="section" id="newsletter"></section>
-
-  <div class="divider"></div>
-
-  <!-- FAQ -->
-  <section class="section section-alt" id="faq"></section>
-
-  <!-- ФУТЕР -->
-  <footer class="footer" id="footer"></footer>
-
-  <!-- Crisp Live Chat — замени YOUR_WEBSITE_ID на свой ID из Crisp -->
-  <!-- <script>window.$crisp=[];window.CRISP_WEBSITE_ID="YOUR_WEBSITE_ID";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script> -->
-
-<script src="data.js"></script>
-<script src="main.js"></script>
+let evI=0;
+function sEv(d){
+  const tr=document.getElementById('evTr'),cs=tr.querySelectorAll('.fc');
+  const vis=window.innerWidth<=768?1:window.innerWidth<=1024?2:3;
+  evI=Math.max(0,Math.min(evI+d,cs.length-vis));
+  tr.style.transform=`translateX(-${evI*(cs[0].offsetWidth+22)}px)`;
+}
+let vI=0;
+function sVid(d){
+  const tr=document.getElementById('vidTr'),cs=tr.querySelectorAll('.vcard');
+  const vis=window.innerWidth<=768?1:window.innerWidth<=1024?2:3;
+  vI=Math.max(0,Math.min(vI+d,cs.length-vis));
+  tr.style.transform=`translateX(-${vI*(cs[0].offsetWidth+22)}px)`;
+}
+function pVid(el,id){el.innerHTML=`<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allow="autoplay;fullscreen" allowfullscreen></iframe>`}
+function tFaq(b){b.classList.toggle('on');b.nextElementSibling.classList.toggle('on')}
+function subNl(){const e=document.getElementById('nlEmail'),m=document.getElementById('nlMsg');if(!e.value.includes('@')){m.textContent='Введите корректный email';m.style.color='#D95B5B';return}m.textContent='Вы подписаны! Спасибо 🎉';m.style.color='var(--grn)';e.value=''}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
