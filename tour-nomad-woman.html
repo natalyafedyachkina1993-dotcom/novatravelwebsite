@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Путешествие кочевой женщины — NovaTravel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lav:#B8A9CC;--lav-dk:#8B7AAA;--lav-lt:#EDE8F5;--lav-dp:#4A3B6B;
+  --grn:#7A9E7E;--grn-lt:#EBF2EB;--pch:#E8AA88;--pch-lt:#FDF0E8;
+  --bg:#FAFAF8;--wh:#fff;--tx:#2C2438;--txm:#5A4F6A;--txl:#8A7A9A;--bdr:#E2D8EE;
+  --fh:'Playfair Display',Georgia,serif;--fb:'DM Sans',sans-serif;
+  --r:12px;--sh:0 4px 24px rgba(74,59,107,.10);--shl:0 12px 40px rgba(74,59,107,.15);--hh:72px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font-family:var(--fb)}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.lbl{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--lav-dk);display:block}
+.h2{font-family:var(--fh);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;line-height:1.2;margin-bottom:12px}
+.h2 em{font-style:italic;color:var(--lav-dk)}
+.h3{font-family:var(--fh);font-size:1.25rem;font-weight:600;margin-bottom:14px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:40px;font-family:var(--fb);font-size:.875rem;font-weight:500;transition:all .22s;white-space:nowrap;cursor:pointer;border:none}
+.bp{background:var(--lav-dk);color:#fff}.bp:hover{background:var(--lav-dp);transform:translateY(-2px)}
+.bo{border:1.5px solid var(--lav-dk)!important;color:var(--lav-dk);background:none}.bo:hover{background:var(--lav-dk);color:#fff}
+.bpch{background:var(--pch);color:#fff}.bpch:hover{background:#d4966e}
+.bw{background:#fff;color:var(--lav-dp)}.bw:hover{background:var(--lav-lt)}
+.bsm{padding:9px 18px;font-size:.82rem}.bfull{width:100%;justify-content:center}
+
+/* BADGES */
+.bdg{display:inline-block;padding:4px 11px;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.bx-hit{background:var(--pch);color:#fff}.bx-new{background:var(--grn);color:#fff}
+
+/* ═══ HEADER (same as index) */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--hh);background:rgba(250,250,248,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(226,216,238,.6)}
+.hi{height:100%;display:flex;align-items:center;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo img{height:38px;width:38px;object-fit:contain}
+.logo-n{font-family:var(--fh);font-size:1.15rem;color:var(--tx)}
+.hnav{display:flex;gap:4px;margin-left:12px}
+.hnav a{font-size:.84rem;color:var(--txm);padding:6px 10px;border-radius:6px;transition:all .2s}
+.hnav a:hover{color:var(--lav-dk);background:var(--lav-lt)}
+.hsoc{display:flex;gap:7px;align-items:center;margin-left:auto}
+.hsoc a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--lav-dk);color:#fff;transition:all .2s;flex-shrink:0}
+.hsoc a:hover{background:var(--lav-dp)}
+.hsoc svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hlang{display:flex;gap:2px}
+.hlang button{padding:4px 8px;border-radius:16px;font-size:.76rem;font-weight:500;color:var(--txm);transition:all .2s}
+.hlang button.on{background:var(--lav-dk);color:#fff}
+.brg{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer}
+.brg span{width:22px;height:2px;background:var(--tx);border-radius:2px;display:block}
+
+/* ═══ TOUR HERO */
+.tour-hero{margin-top:var(--hh);position:relative;height:72vh;min-height:500px;overflow:hidden}
+.tour-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#2A1E50 0%,#4A3578 50%,#7C6BA0 100%)}
+.tour-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(42,30,80,.92) 0%,rgba(42,30,80,.4) 60%,transparent 100%)}
+.tour-hero-content{position:absolute;bottom:0;left:0;right:0;padding:48px 0;color:#fff}
+.tour-breadcrumb{font-size:.78rem;color:rgba(255,255,255,.55);margin-bottom:14px}
+.tour-breadcrumb a{color:rgba(255,255,255,.55);transition:color .2s}.tour-breadcrumb a:hover{color:var(--lav)}
+.tour-breadcrumb span{margin:0 8px;opacity:.4}
+.tour-badges{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tour-h1{font-family:var(--fh);font-size:clamp(1.9rem,4vw,3.2rem);font-weight:400;line-height:1.15;margin-bottom:14px}
+.tour-h1 em{font-style:italic;color:var(--lav)}
+.tour-tagline{font-size:1rem;color:rgba(255,255,255,.75);max-width:580px;line-height:1.6;margin-bottom:24px}
+/* Share buttons */
+.tour-share{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.share-lbl{font-size:.78rem;color:rgba(255,255,255,.5)}
+.share-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:40px;font-size:.78rem;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);transition:all .2s;cursor:pointer;background:rgba(255,255,255,.08)}
+.share-btn:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.4)}
+.share-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ═══ TOUR LAYOUT (sticky sidebar) */
+.tour-body{display:grid;grid-template-columns:1fr 360px;gap:48px;padding:48px 0;align-items:start}
+.tour-main{}
+.tour-sidebar{position:sticky;top:calc(var(--hh) + 20px)}
+
+/* ═══ TOUR STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;margin-bottom:36px}
+.stat-cell{background:var(--wh);padding:16px 12px;text-align:center}
+.stat-cell .sk{font-size:.7rem;color:var(--txl);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;display:flex;align-items:center;justify-content:center;gap:5px}
+.stat-cell .sk svg{width:13px;height:13px;stroke:var(--lav-dk);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.stat-cell .sv{font-family:var(--fh);font-size:1.12rem;color:var(--tx);font-weight:600}
+.stat-cell .sv small{font-size:.7rem;font-family:var(--fb);font-weight:400;color:var(--txm)}
+
+/* Physical level bar */
+.phys-bar{display:flex;gap:3px;justify-content:center;margin-top:4px}
+.phys-dot{width:8px;height:8px;border-radius:50%;background:var(--bdr)}
+.phys-dot.active{background:var(--lav-dk)}
+
+/* Countries */
+.countries-list{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.country-tag{display:flex;align-items:center;gap:6px;background:var(--lav-lt);border:1px solid var(--bdr);padding:6px 14px;border-radius:20px;font-size:.82rem;color:var(--lav-dp)}
+
+/* ═══ HIGHLIGHTS */
+.highlights{background:var(--lav-lt);border-radius:var(--r);padding:28px;margin-bottom:32px}
+.highlights ul{display:flex;flex-direction:column;gap:10px}
+.highlights li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--txm);line-height:1.6}
+.hl-check{width:20px;height:20px;border-radius:50%;background:var(--lav-dk);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.hl-check svg{width:11px;height:11px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ═══ MAP */
+.map-wrap{border-radius:var(--r);overflow:hidden;margin-bottom:32px;border:1px solid var(--bdr)}
+.map-wrap iframe{display:block;width:100%;height:380px;border:none}
+.map-placeholder{width:100%;height:380px;background:linear-gradient(135deg,var(--lav-lt),var(--bdr));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--txm)}
+.map-placeholder svg{width:48px;height:48px;stroke:var(--lav-dk);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.map-link{display:inline-flex;align-items:center;gap:7px;margin-top:12px;color:var(--lav-dk);font-size:.86rem;border-bottom:1px solid var(--lav-dk);transition:opacity .2s}
+.map-link:hover{opacity:.7}
+.map-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ═══ ITINERARY */
+.itin{margin-bottom:32px}
+.itin-item{border:1px solid var(--bdr);border-radius:var(--r);margin-bottom:6px;overflow:hidden;background:var(--wh)}
+.itin-header{width:100%;text-align:left;padding:16px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;background:none;transition:background .2s;border:none}
+.itin-header:hover{background:var(--lav-lt)}
+.itin-header.on{background:var(--lav-lt)}
+.day-num{width:34px;height:34px;border-radius:50%;background:var(--lav-dk);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:600;flex-shrink:0}
+.itin-header.on .day-num{background:var(--lav-dp)}
+.day-info{flex:1;text-align:left}
+.day-title{font-family:var(--fh);font-size:.95rem;font-weight:600;color:var(--tx);line-height:1.3}
+.day-cities{font-size:.76rem;color:var(--txl);margin-top:2px}
+.day-meta{display:flex;gap:12px;flex-shrink:0}
+.day-meta span{font-size:.74rem;color:var(--txl);display:flex;align-items:center;gap:4px}
+.day-meta svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.itin-chev{margin-left:8px;color:var(--lav-dk);flex-shrink:0;transition:transform .3s}
+.itin-header.on .itin-chev{transform:rotate(180deg)}
+.itin-chev svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.itin-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.itin-body.on{max-height:600px}
+.itin-inner{padding:20px 20px 22px 68px;border-top:1px solid var(--bdr)}
+.itin-desc{font-size:.88rem;color:var(--txm);line-height:1.78;margin-bottom:14px}
+.itin-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:flex;align-items:center;gap:5px;background:var(--lav-lt);padding:4px 11px;border-radius:12px;font-size:.76rem;color:var(--lav-dp)}
+.chip svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.chip-meals{background:#FFF6EF;color:#8B5E3C}
+.chip-sleep{background:#EBF2EB;color:#3C5E3C}
+
+/* Route map image */
+.route-img{width:100%;border-radius:var(--r);margin-top:24px;border:1px solid var(--bdr)}
+.route-img-ph{width:100%;height:200px;background:linear-gradient(135deg,var(--lav-lt),var(--bdr));border-radius:var(--r);display:flex;align-items:center;justify-content:center;color:var(--txm);font-size:.9rem;margin-top:24px;border:1px dashed var(--lav)}
+
+/* ═══ INCLUDED / EXCLUDED */
+.incl-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
+.incl-box{border-radius:var(--r);padding:22px}
+.incl-box.yes{background:var(--grn-lt);border:1px solid #C6DECA}
+.incl-box.no{background:#FFF5F5;border:1px solid #F0CECE}
+.incl-box h4{font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.incl-box.yes h4{color:#3C6B44}
+.incl-box.no h4{color:#8B3A3A}
+.incl-box h4 svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.incl-list{display:flex;flex-direction:column;gap:8px}
+.incl-item{display:flex;align-items:flex-start;gap:9px;font-size:.84rem;line-height:1.55}
+.incl-item svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px}
+.incl-box.yes .incl-item svg{stroke:#3C6B44}
+.incl-box.no .incl-item svg{stroke:#8B3A3A}
+.incl-box.yes .incl-item{color:#2C4A30}
+.incl-box.no .incl-item{color:#5E2A2A}
+
+/* ═══ DATES & PRICES TABLE */
+.dates-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.dates-table th{background:var(--lav-dp);color:#fff;padding:12px 16px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:left}
+.dates-table th:first-child{border-radius:var(--r) 0 0 0}
+.dates-table th:last-child{border-radius:0 var(--r) 0 0}
+.dates-table td{padding:12px 16px;font-size:.88rem;border-bottom:1px solid var(--bdr);background:var(--wh)}
+.dates-table tr:last-child td{border-bottom:none}
+.dates-table tr:last-child td:first-child{border-radius:0 0 0 var(--r)}
+.dates-table tr:last-child td:last-child{border-radius:0 0 var(--r) 0}
+.dates-table tr:hover td{background:var(--lav-lt)}
+.status-av{color:#3C6B44;font-weight:500;font-size:.8rem;background:#EBF2EB;padding:3px 10px;border-radius:12px;display:inline-block}
+.status-few{color:#7A5A00;font-weight:500;font-size:.8rem;background:#FFF9E6;padding:3px 10px;border-radius:12px;display:inline-block}
+.status-no{color:#8B3A3A;font-weight:500;font-size:.8rem;background:#FFF5F5;padding:3px 10px;border-radius:12px;display:inline-block}
+
+/* ═══ IMPORTANT INFO accordion */
+.imp-list{display:flex;flex-direction:column;gap:6px;margin-bottom:32px}
+.imp-item{border:1px solid var(--bdr);border-radius:var(--r);background:var(--wh);overflow:hidden}
+.imp-q{width:100%;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.88rem;font-weight:500;color:var(--tx);cursor:pointer;background:none;transition:background .2s;border:none}
+.imp-q:hover{background:var(--lav-lt)}.imp-q.on{background:var(--lav-lt);color:var(--lav-dk)}
+.imp-ic{font-size:1rem;transition:transform .3s;color:var(--lav-dk)}
+.imp-q.on .imp-ic{transform:rotate(45deg)}
+.imp-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;font-size:.86rem;color:var(--txm);line-height:1.75}
+.imp-a.on{max-height:300px;padding:14px 18px 18px}
+.imp-a a{color:var(--lav-dk)}
+
+/* ═══ COUNTRY LINKS */
+.country-links{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.clink{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 16px;background:var(--wh);border:1px solid var(--bdr);border-radius:var(--r);text-align:center;font-size:.8rem;color:var(--txm);transition:all .2s;min-width:100px}
+.clink:hover{border-color:var(--lav-dk);color:var(--lav-dk);transform:translateY(-2px)}
+.clink .cf{font-size:1.6rem}
+.clink .cn{font-size:.76rem;margin-top:2px}
+
+/* ═══ FAQ */
+.faq-list{display:flex;flex-direction:column;gap:4px;margin-bottom:36px}
+.faq-list .fi{border:1px solid var(--bdr);border-radius:8px;overflow:hidden;background:var(--wh)}
+.faq-list .fq{width:100%;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.88rem;color:var(--tx);cursor:pointer;transition:background .2s;background:none;border:none}
+.faq-list .fq:hover{background:var(--lav-lt)}.faq-list .fq.on{background:var(--lav-lt);color:var(--lav-dk)}
+.faq-list .fi-ic{font-size:1rem;transition:transform .3s;color:var(--lav-dk);flex-shrink:0}
+.faq-list .fq.on .fi-ic{transform:rotate(45deg)}
+.faq-list .fa{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;font-size:.86rem;color:var(--txm);line-height:1.75}
+.faq-list .fa.on{max-height:300px;padding:14px 18px 18px}
+.faq-list .fa a{color:var(--lav-dk)}
+
+/* ═══ REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px}
+.rev-card{background:var(--wh);border:1px solid var(--bdr);border-radius:var(--r);padding:22px}
+.rev-stars{color:var(--pch);font-size:.9rem;margin-bottom:10px}
+.rev-text{font-size:.86rem;color:var(--txm);line-height:1.72;margin-bottom:14px;font-style:italic}
+.rev-author{display:flex;align-items:center;gap:10px}
+.rev-ava{width:36px;height:36px;border-radius:50%;background:var(--lav-lt);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.rev-name{font-size:.84rem;font-weight:500;color:var(--tx)}
+.rev-country{font-size:.76rem;color:var(--txl)}
+.rev-cta{text-align:center;padding:20px;background:var(--lav-lt);border-radius:var(--r);margin-bottom:32px}
+.rev-cta p{font-size:.88rem;color:var(--txm);margin-bottom:12px}
+
+/* ═══ BLOG RELATED */
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.rbcard{background:var(--wh);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;transition:all .3s}
+.rbcard:hover{box-shadow:var(--shl);transform:translateY(-3px)}
+.rbcard-ph{width:100%;height:120px;background:linear-gradient(135deg,var(--grn-lt),var(--lav-lt));display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+.rbcard-b{padding:14px}
+.rbcard-tg{font-size:.7rem;color:var(--lav-dk);font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.rbcard-ti{font-family:var(--fh);font-size:.9rem;line-height:1.4;color:var(--tx)}
+
+/* ═══ SIDEBAR */
+.sidebar-card{background:var(--wh);border:1px solid var(--bdr);border-radius:16px;padding:26px;margin-bottom:20px;box-shadow:var(--sh)}
+.price-main{font-family:var(--fh);font-size:2rem;color:var(--lav-dp);line-height:1;margin-bottom:4px}
+.price-sub{font-size:.78rem;color:var(--txl);margin-bottom:18px}
+.price-details{border-top:1px solid var(--bdr);padding-top:14px;margin-bottom:18px;display:flex;flex-direction:column;gap:8px}
+.price-row{display:flex;justify-content:space-between;font-size:.84rem}
+.price-row .pk{color:var(--txm)}
+.price-row .pv{font-weight:500;color:var(--tx)}
+.sidebar-btns{display:flex;flex-direction:column;gap:10px}
+.sidebar-note{font-size:.74rem;color:var(--txl);text-align:center;margin-top:10px;line-height:1.5}
+/* Quick info in sidebar */
+.quick-info{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.qi{display:flex;align-items:center;gap:12px;font-size:.84rem;color:var(--txm)}
+.qi svg{width:16px;height:16px;stroke:var(--lav-dk);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.qi strong{color:var(--tx);margin-left:auto}
+
+/* Dividers */
+.section-divider{height:1px;background:var(--bdr);margin:28px 0}
+.sec-title{font-family:var(--fh);font-size:1.35rem;font-weight:400;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--lav-lt)}
+.sec-title em{font-style:italic;color:var(--lav-dk)}
+
+/* FOOTER minimal */
+.ftr{background:var(--lav-dp);padding:36px 0 20px;margin-top:0}
+.ft-mini{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.ft-mini-logo{display:flex;align-items:center;gap:9px}
+.ft-mini-logo img{height:34px;width:34px;object-fit:contain;filter:brightness(0) invert(1)}
+.ft-mini-logo span{font-family:var(--fh);font-size:1.1rem;color:#fff}
+.ft-mini-links{display:flex;gap:16px;flex-wrap:wrap}
+.ft-mini-links a{font-size:.8rem;color:rgba(255,255,255,.65);transition:color .2s}
+.ft-mini-links a:hover{color:#fff}
+.ft-mini-copy{font-size:.76rem;color:rgba(255,255,255,.35);width:100%;text-align:center;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);margin-top:16px}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .tour-body{grid-template-columns:1fr;gap:32px}
+  .tour-sidebar{position:static}
+  .incl-grid{grid-template-columns:1fr 1fr}
+  .stats-bar{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  :root{--hh:60px}
+  .wrap{padding:0 16px}
+  .tour-hero{height:60vh}
+  .tour-h1{font-size:1.7rem}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .incl-grid{grid-template-columns:1fr}
+  .reviews-grid{grid-template-columns:1fr}
+  .related-grid{grid-template-columns:1fr}
+  .tour-share{gap:7px}
+  .hnav,.hsoc,.hlang{display:none}
+  .brg{display:flex;flex-direction:column;gap:5px;padding:6px;cursor:pointer;margin-left:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ШАПКА упрощённая -->
+<header class="hdr">
+  <div class="wrap">
+    <div class="hi">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="NovaTravel" onerror="this.style.display='none'">
+        <span class="logo-n">NovaTravel</span>
+      </a>
+      <nav class="hnav">
+        <a href="index.html#tours">Туры</a>
+        <a href="index.html#events">Мероприятия</a>
+        <a href="index.html#blog">Блог</a>
+        <a href="index.html#about">О нас</a>
+        <a href="index.html#faq">FAQ</a>
+      </nav>
+      <div class="hsoc">
+        <a href="https://www.instagram.com/novatravel.world" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://t.me/novatravel_world" target="_blank"><svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></svg></a>
+      </div>
+      <div class="hlang"><button class="on">RU</button><button>EN</button></div>
+      <a href="mailto:novatravel.world@gmail.com" class="btn bp bsm" style="margin-left:6px;flex-shrink:0">Написать нам</a>
+      <div class="brg"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ TOUR HERO -->
+<div class="tour-hero">
+  <div class="tour-hero-bg"></div>
+  <div class="tour-hero-overlay"></div>
+  <div class="tour-hero-content">
+    <div class="wrap">
+      <div class="tour-breadcrumb">
+        <a href="index.html">Главная</a><span>/</span>
+        <a href="index.html#tours">Туры</a><span>/</span>
+        <a href="#">Кыргызстан</a><span>/</span>
+        Путешествие кочевой женщины
+      </div>
+      <div class="tour-badges">
+        <span class="bdg bx-new">НОВИНКА</span>
+        <span class="bdg bx-hit">ХИТ СЕЗОНА</span>
+        <span style="background:rgba(255,255,255,.15);color:#fff;padding:4px 12px;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase">🎪 Игры кочевников 2026</span>
+      </div>
+      <h1 class="tour-h1">Путешествие <em>кочевой женщины</em>:<br>от гор к духу Игр</h1>
+      <p class="tour-tagline">10 дней · Кыргызстан · 29 августа — 7 сентября 2026</p>
+      <!-- Share -->
+      <div class="tour-share">
+        <span class="share-lbl">Поделиться:</span>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank" class="share-btn">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook
+        </a>
+        <a href="https://www.instagram.com/novatravel.world" target="_blank" class="share-btn">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>Instagram
+        </a>
+        <a href="https://pinterest.com/pin/create/button/?url=YOUR_URL" target="_blank" class="share-btn">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.852 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.772 0 3.137-1.868 3.137-4.568 0-2.386-1.717-4.054-4.165-4.054-2.837 0-4.499 2.127-4.499 4.326 0 .857.33 1.775.741 2.276a.3.3 0 0 1 .069.288c-.076.31-.244.995-.277 1.134-.044.183-.146.222-.337.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>Pinterest
+        </a>
+        <button class="share-btn" onclick="navigator.clipboard.writeText(location.href);this.textContent='✓ Скопировано'">
+          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Скопировать ссылку
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TOUR BODY -->
+<div class="wrap">
+  <div class="tour-body">
+
+    <!-- MAIN CONTENT -->
+    <div class="tour-main">
+
+      <!-- Stats bar -->
+      <div class="stats-bar">
+        <div class="stat-cell">
+          <div class="sk"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Дней</div>
+          <div class="sv">10</div>
+        </div>
+        <div class="stat-cell">
+          <div class="sk"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Группа</div>
+          <div class="sv">4–12 <small>чел</small></div>
+        </div>
+        <div class="stat-cell">
+          <div class="sk"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Нагрузка</div>
+          <div class="sv" style="font-size:.9rem">Умеренная</div>
+          <div class="phys-bar">
+            <div class="phys-dot active"></div><div class="phys-dot active"></div>
+            <div class="phys-dot active"></div><div class="phys-dot"></div><div class="phys-dot"></div>
+          </div>
+        </div>
+        <div class="stat-cell">
+          <div class="sk"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Комфорт</div>
+          <div class="sv" style="font-size:.88rem">Стандарт</div>
+        </div>
+        <div class="stat-cell">
+          <div class="sk"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Тип</div>
+          <div class="sv" style="font-size:.88rem">Женский</div>
+        </div>
+      </div>
+
+      <!-- Countries visited -->
+      <div style="margin-bottom:20px">
+        <div style="font-size:.8rem;color:var(--txl);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Страны маршрута</div>
+        <div class="countries-list">
+          <div class="country-tag"><span>🇰🇬</span>Кыргызстан</div>
+        </div>
+        <div style="font-size:.82rem;color:var(--txm)">Маршрут: <strong>Бишкек → Кызарт → Килемче → Сон-Куль → Кочкор → Иссык-Куль → Каракол → Чолпон-Ата → Бишкек</strong></div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Description -->
+      <div style="margin-bottom:24px">
+        <p style="font-size:.95rem;color:var(--txm);line-height:1.82;margin-bottom:14px">Это путешествие предназначено для тех, кто хочет <strong>восстановить внутреннее равновесие</strong>, открыть в себе силу кочевой женщины и стать частью сообщества творческих женщин. Познакомьтесь с аутентичным кочевым образом жизни, пообщайтесь с вдохновляющими женщинами-предпринимателями.</p>
+        <p style="font-size:.95rem;color:var(--txm);line-height:1.82">Станьте свидетелем <strong>6-х Всемирных игр кочевников</strong> (31 авг – 6 сент 2026) — зрелищного этнического спортивного и культурного фестиваля. Этот тур изменит ваше отношение к жизни и бизнесу.</p>
+      </div>
+
+      <!-- Highlights -->
+      <div class="sec-title">Основные <em>моменты</em></div>
+      <div class="highlights">
+        <ul>
+          <li><div class="hl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Участие в 6-х Всемирных кочевых играх: конные игры, охота с соколами, борьба, ремёсла</li>
+          <li><div class="hl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Глубокое погружение в кочевые ремёсла — войлок, сборка юрт, традиционная кулинария</li>
+          <li><div class="hl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Трансформационный коучинг, ретриты и звуковая терапия в природе</li>
+          <li><div class="hl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Встречи с женщинами-предпринимателями, ремесленницами и кочевыми пастухами</li>
+          <li><div class="hl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Пешие и конные прогулки по горным перевалам, альпийским озёрам, священным местам</li>
+          <li><div class="hl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Оздоровительные ритуалы и традиционные спа-процедуры</li>
+          <li><div class="hl-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Эксклюзивное размещение только для женщин с аутентичным кыргызским гостеприимством</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Map -->
+      <div class="sec-title">Карта <em>маршрута</em></div>
+      <div class="map-wrap">
+        <div class="map-placeholder">
+          <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+          <span style="font-size:.88rem">Вставь iframe с Google My Maps<br><small>Нарисуй маршрут → Поделиться → Вставить на сайт → скопируй код iframe</small></span>
+        </div>
+        <!-- Раскомментируй и вставь свой iframe:
+        <iframe src="ТВОЙ_EMBED_URL" allowfullscreen></iframe>
+        -->
+      </div>
+      <a href="https://maps.google.com" target="_blank" class="map-link">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Открыть маршрут на Google Maps
+      </a>
+
+      <div class="section-divider"></div>
+
+      <!-- Itinerary -->
+      <div class="sec-title">Маршрут <em>по дням</em></div>
+      <div class="itin">
+
+        <!-- День 1 -->
+        <div class="itin-item">
+          <button class="itin-header on" onclick="toggleDay(this)">
+            <div class="day-num">1</div>
+            <div class="day-info">
+              <div class="day-title">Бишкек — Прибытие и знакомство с городом</div>
+              <div class="day-cities">29 августа 2026 · Бишкек</div>
+            </div>
+            <div class="day-meta">
+              <span><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Отель Нават</span>
+            </div>
+            <div class="itin-chev"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </button>
+          <div class="itin-body on">
+            <div class="itin-inner">
+              <div class="itin-desc">Раннее прибытие в Бишкек, встреча с гидом в аэропорту, трансфер в отель. Завтрак, знакомство с городом. Посещение главных мечетей, площадь Ала-Тоо с памятником Манасу, улица Советская, Государственный исторический музей, галерея Гапара Айтиева, Дубовый парк.<br><br>Вечер: брифинг, вводная медитация, круг участниц и постановка целей. Ужин с женщинами-предпринимателями Бишкека — обмен опытом и вдохновением.</div>
+              <div class="itin-chips">
+                <div class="chip chip-meals"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>Завтрак · Обед · Ужин</div>
+                <div class="chip chip-sleep"><svg viewBox="0 0 24 24"><path d="M2 4v16M2 8h18a2 2 0 0 1 0 4H7a2 2 0 0 1 0 4h15"/></svg>Отель «Нават», Бишкек</div>
+                <div class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Высота 900 м</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- День 2 -->
+        <div class="itin-item">
+          <button class="itin-header" onclick="toggleDay(this)">
+            <div class="day-num">2</div>
+            <div class="day-info">
+              <div class="day-title">Бишкек → Кызарт → Долина Килемче</div>
+              <div class="day-cities">30 августа · 270 км · 4 часа езды</div>
+            </div>
+            <div class="day-meta">
+              <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>270 км</span>
+              <span>4 ч пути</span>
+            </div>
+            <div class="itin-chev"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </button>
+          <div class="itin-body">
+            <div class="itin-inner">
+              <div class="itin-desc">Завтрак и трансфер в село Кызарт с видом на долину. Обед с местной семьей. Встреча с женщиной-предпринимателем, создавшей гостевой дом. Поход на Килемче-джайлоо (2,5–3 часа). Заселение в юрточный лагерь под управлением женской команды.<br><br>Тренинг «Сила предков и современная женщина». Коучинг: «Что я ищу в путешествиях и жизни». Йога. Ужин с песнями под звёздами.</div>
+              <div class="itin-chips">
+                <div class="chip chip-meals"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>Завтрак · Обед · Ужин</div>
+                <div class="chip chip-sleep"><svg viewBox="0 0 24 24"><path d="M2 4v16M2 8h18a2 2 0 0 1 0 4H7a2 2 0 0 1 0 4h15"/></svg>Юрточный лагерь Килемче</div>
+                <div class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>900 м → 2500 м</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- День 3 -->
+        <div class="itin-item">
+          <button class="itin-header" onclick="toggleDay(this)">
+            <div class="day-num">3</div>
+            <div class="day-info">
+              <div class="day-title">Килемче → Перевал Жалдыз-Карагай → Озеро Сон-Куль</div>
+              <div class="day-cities">31 августа · 14 км · 4–5 часов похода</div>
+            </div>
+            <div class="day-meta">
+              <span><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>14 км</span>
+              <span>4–5 ч похода</span>
+            </div>
+            <div class="itin-chev"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </button>
+          <div class="itin-body">
+            <div class="itin-inner">
+              <div class="itin-desc">Поход к перевалу Жалдыз-Карагай (3320 м), 2–3 часа. Захватывающие виды на пастбище Килемче. Спуск к озеру Сон-Куль (~1,5 часа). Встреча с водителем и переезд в юрточный лагерь на берегу озера.<br><br>Вечерний ретрит — женский круг с дневником и звуковой терапией. Медитация у озера. Коучинг: «Отпусти старое, чтобы приветствовать новое».</div>
+              <div class="itin-chips">
+                <div class="chip chip-meals"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>Завтрак · Обед · Ужин</div>
+                <div class="chip chip-sleep"><svg viewBox="0 0 24 24"><path d="M2 4v16M2 8h18a2 2 0 0 1 0 4H7a2 2 0 0 1 0 4h15"/></svg>Юрточный лагерь Сон-Куль</div>
+                <div class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>2500 → 3320 → 3030 м</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- День 4 -->
+        <div class="itin-item">
+          <button class="itin-header" onclick="toggleDay(this)">
+            <div class="day-num">4</div>
+            <div class="day-info">
+              <div class="day-title">Сон-Куль → Кочкор — Войлок и ремёсла</div>
+              <div class="day-cities">1 сентября · 150 км · 3–4 часа езды</div>
+            </div>
+            <div class="day-meta"><span>150 км</span><span>3–4 ч</span></div>
+            <div class="itin-chev"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </button>
+          <div class="itin-body">
+            <div class="itin-inner">
+              <div class="itin-desc">Йога и дыхательные упражнения на рассвете. Завтрак. Встреча с хозяйками лагеря — традиционные молочные продукты и кумыс. Переезд в Кочкор. Мастер-класс по изготовлению войлока и шырдаков (ковры из войлока). Кулинарный мастер-класс: Бешпармак.<br><br>Встреча с местными женщинами-предпринимателями. Вечерняя история о Курмаджан Датке. Ужин в семейном гостевом доме.</div>
+              <div class="itin-chips">
+                <div class="chip chip-meals"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>Завтрак · Обед · Ужин</div>
+                <div class="chip chip-sleep">Гостевой дом «Мира», Кочкор</div>
+                <div class="chip">🎨 Мастер-класс войлок</div>
+                <div class="chip">🍽️ Мастер-класс Бешпармак</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- День 5 -->
+        <div class="itin-item">
+          <button class="itin-header" onclick="toggleDay(this)">
+            <div class="day-num">5</div>
+            <div class="day-info">
+              <div class="day-title">Кочкор → Горячие источники → Иссык-Куль</div>
+              <div class="day-cities">2 сентября · 220 км · 4 часа</div>
+            </div>
+            <div class="day-meta"><span>220 км</span></div>
+            <div class="itin-chev"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </button>
+          <div class="itin-body">
+            <div class="itin-inner">
+              <div class="itin-desc">Завтрак. Природные горячие источники — аутентичное оздоровление. Каньоны Сказка — прогулка и фотосессия. По прибытии — бизнес-игры в юрточном лагере. Гид читает отрывок из «Джамили» Чингиза Айтматова. Рассказы у костра с пожилыми женщинами. Ночёвка на берегу озера.</div>
+              <div class="itin-chips">
+                <div class="chip chip-meals"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>Завтрак · Обед · Ужин</div>
+                <div class="chip chip-sleep">Nomad Lodge, Иссык-Куль</div>
+                <div class="chip">♨️ Горячие источники</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- День 6 -->
+        <div class="itin-item">
+          <button class="itin-header" onclick="toggleDay(this)">
+            <div class="day-num">6</div>
+            <div class="day-info">
+              <div class="day-title">Плато Арабель → Каракол — Джети-Огуз</div>
+              <div class="day-cities">3 сентября · 170 км · 3–4 часа + 12 км похода</div>
+            </div>
+            <div class="day-meta"><span>170 км</span><span>12 км поход</span></div>
+            <div class="itin-chev"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </button>
+          <div class="itin-body">
+            <div class="itin-inner">
+              <div class="itin-desc">Ранний выезд на плато Арабель (3800 м) — панорамы Тянь-Шаня, виды на ледники. Фотосессия «Женская сила в горах». Поход от Светлой Поляны до ущелья Джети-Огуз (12 км, 3–4 часа), водопад 20 м. Легендарные красные скалы «Семь быков». По прибытии в Каракол — мечеть Дунган, старейшая церковь. Встреча с проектом «Одна деревня — один продукт».</div>
+              <div class="itin-chips">
+                <div class="chip chip-meals">Завтрак · Пикник · Ужин дунганский</div>
+                <div class="chip chip-sleep">Amir Guest House, Каракол</div>
+                <div class="chip">🏔️ Высота 3800 м</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- День 7 -->
+        <div class="itin-item">
+          <button class="itin-header" onclick="toggleDay(this)">
+            <div class="day-num">7</div>
+            <div class="day-info">
+              <div class="day-title">Каракол → Ферма Тепке → Чолпон-Ата — Игры кочевников</div>
+              <div class="day-cities">4 сентября · 180 км</div>
+            </div>
+            <div class="day-meta"><span>180 км</span></div>
+            <div class="itin-chev"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </button>
+          <div class="itin-body">
+            <div class="itin-inner">
+              <div class="itin-desc">Посещение фермы Тепке — встреча с женщинами-лидерами сельских проектов. Переезд в Чолпон-Ату. Этно-рынок Игр кочевников. Музей петроглифов под открытым небом (II тыс. до н.э. – VIII в. н.э.). Первые состязания кочевых игр на стадионе!</div>
+              <div class="itin-chips">
+                <div class="chip chip-meals">Завтрак · Обед · Ужин</div>
+                <div class="chip chip-sleep">Отель «Три короны», Чолпон-Ата</div>
+                <div class="chip">🎪 Игры кочевников — старт</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- День 8 -->
+        <div class="itin-item">
+          <button class="itin-header" onclick="toggleDay(this)">
+            <div class="day-num">8</div>
+            <div class="day-info">
+              <div class="day-title">Чолпон-Ата — Полный день на Играх кочевников</div>
+              <div class="day-cities">5 сентября · Кырчин · Ущелье</div>
+            </div>
+            <div class="day-meta"><span>🎪 Игры</span></div>
+            <div class="itin-chev"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </button>
+          <div class="itin-body">
+            <div class="itin-inner">
+              <div class="itin-desc">Полный день на Играх: конные игры (Кок-Бору, Эр-Ениш, Кыз-Кумай), демонстрации охоты с соколами, борьба, стрельба из лука, ярмарка ремёсел со всей ЦА, культурные представления. Встречи с участниками, установление международных связей. Женский круг: «Мой внутренний кочевник: свобода и цель».</div>
+              <div class="itin-chips">
+                <div class="chip chip-meals">Завтрак · Обед · Ужин</div>
+                <div class="chip chip-sleep">Отель «Три короны»</div>
+                <div class="chip">🏇 Кок-Бору</div>
+                <div class="chip">🦅 Беркутчилук</div>
+                <div class="chip">🏹 Стрельба из лука</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- День 9 -->
+        <div class="itin-item">
+          <button class="itin-header" onclick="toggleDay(this)">
+            <div class="day-num">9</div>
+            <div class="day-info">
+              <div class="day-title">Чолпон-Ата → Башня Бурана → Бишкек</div>
+              <div class="day-cities">6 сентября · 270 км · 4–5 часов</div>
+            </div>
+            <div class="day-meta"><span>270 км</span></div>
+            <div class="itin-chev"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </button>
+          <div class="itin-body">
+            <div class="itin-inner">
+              <div class="itin-desc">Утро на Играх. После обеда — прощание с Иссык-Кулем. Остановка у башни Бурана (X–XII вв.). Встреча с сообществом женщин-предпринимателей в Бишкеке. Коучинг: «Как интегрировать опыт в бизнес и жизнь». Вечер обмена подарками и благодарности.</div>
+              <div class="itin-chips">
+                <div class="chip chip-meals">Завтрак · Обед · Ужин</div>
+                <div class="chip chip-sleep">Отель «Нават», Бишкек</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- День 10 -->
+        <div class="itin-item">
+          <button class="itin-header" onclick="toggleDay(this)">
+            <div class="day-num">10</div>
+            <div class="day-info">
+              <div class="day-title">Бишкек — Аэропорт Манас. Окончание тура</div>
+              <div class="day-cities">7 сентября 2026</div>
+            </div>
+            <div class="day-meta"><span>✈️ Вылет</span></div>
+            <div class="itin-chev"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </button>
+          <div class="itin-body">
+            <div class="itin-inner">
+              <div class="itin-desc">Завтрак. Трансфер в аэропорт Манас. Вылет. Окончание тура.</div>
+              <div class="itin-chips">
+                <div class="chip chip-meals">Завтрак</div>
+                <div class="chip">✈️ Трансфер в аэропорт</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Route map image placeholder -->
+      <div class="route-img-ph">🗺️ Здесь будет общая карта-схема маршрута (загрузи как изображение)</div>
+
+      <div class="section-divider"></div>
+
+      <!-- Included / Excluded -->
+      <div class="sec-title">Что <em>включено</em></div>
+      <div class="incl-grid">
+        <div class="incl-box yes">
+          <h4><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Включено в стоимость</h4>
+          <div class="incl-list">
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Двухместное размещение в гостиницах и гостевых домах</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Размещение в юрточных лагерях (Килемче, Сон-Куль, Иссык-Куль)</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Транспорт по маршруту (Mercedes Sprinter с кондиционером)</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Полный пансион (завтрак, обед, ужин) во все дни</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Минеральная вода 1 л/человек в день</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Гид-сопровождающий по всему маршруту</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Входные билеты в парки и культурные объекты</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Встречи с женщинами-предпринимателями</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Мастер-класс по изготовлению войлока в Кочкоре</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Кулинарный мастер-класс (Бешпармак, хлеб)</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Фольклорный концерт в Тамге</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Вход в горячие источники</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Йога, медитации, коучинг и деловые игры</div>
+          </div>
+        </div>
+        <div class="incl-box no">
+          <h4><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Не включено</h4>
+          <div class="incl-list">
+            <div class="incl-item"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Международные авиаперелёты</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Одноместное размещение (доплата)</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Алкогольные и безалкогольные напитки</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Отклонения от программы</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Верховая езда (₽2800/час)</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Круиз по Иссык-Кулю (₽16 000 / группа)</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Билеты на шоу Игр кочевников*</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Ранний заезд в отель в Бишкеке</div>
+            <div class="incl-item"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Личные расходы и сувениры</div>
+          </div>
+          <div style="font-size:.76rem;color:var(--txm);margin-top:12px;font-style:italic">*Билеты на шоу Игр кочевников — сообщим цену за 4 месяца и поможем забронировать</div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Dates & Prices -->
+      <div class="sec-title">Даты и <em>цены</em></div>
+      <table class="dates-table">
+        <thead>
+          <tr><th>Дата начала</th><th>Дата окончания</th><th>Тип</th><th>Стоимость</th><th>Статус</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>29 авг 2026</strong></td>
+            <td>7 сент 2026</td>
+            <td>Групповой</td>
+            <td><strong>₽205 711</strong></td>
+            <td><span class="status-few">Мало мест</span></td>
+            <td><a href="#book" class="btn bp bsm">Забронировать</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="background:var(--lav-lt);border-radius:var(--r);padding:16px 20px;font-size:.84rem;color:var(--txm);margin-bottom:24px">
+        💡 Хотите другие даты или индивидуальный тур для вашей группы? <a href="mailto:novatravel.world@gmail.com?subject=Индивидуальный тур кочевая женщина" style="color:var(--lav-dk)">Напишите нам →</a>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Important Info -->
+      <div class="sec-title">Важная <em>информация</em></div>
+      <div class="imp-list">
+        <div class="imp-item"><button class="imp-q" onclick="toggleImp(this)"><span>🛂 Визы и документы</span><span class="imp-ic">+</span></button><div class="imp-a">Гражданам России — безвизовый въезд в Кыргызстан. Загранпаспорт действителен от 6 месяцев от даты въезда. Гражданам других стран — уточняйте на <a href="https://www.gov.kg" target="_blank">сайте правительства КР</a>.</div></div>
+        <div class="imp-item"><button class="imp-q" onclick="toggleImp(this)"><span>💉 Здоровье и прививки</span><span class="imp-ic">+</span></button><div class="imp-a">Специальных обязательных прививок не требуется. Рекомендуем стандартные: гепатит А, тиф. Возьмите личную аптечку. Маршрут включает высоту до 3800 м — при склонности к горной болезни проконсультируйтесь с врачом.</div></div>
+        <div class="imp-item"><button class="imp-q" onclick="toggleImp(this)"><span>💰 Деньги и валюта</span><span class="imp-ic">+</span></button><div class="imp-a">Валюта: кыргызский сом (KGS). Меняем на месте в обменниках или банках. Карты Visa/Mastercard принимаются в Бишкеке и крупных городах. В горах — только наличные. Возьмите достаточно наличных рублей или долларов.</div></div>
+        <div class="imp-item"><button class="imp-q" onclick="toggleImp(this)"><span>🎒 Что взять с собой</span><span class="imp-ic">+</span></button><div class="imp-a">Удобная трекинговая обувь (обязательно). Лёгкая одежда + тёплый слой для гор. Дождевик. Солнцезащитный крем SPF50+. Головной убор. Для мечетей — шарф/платок. Личные медикаменты. Зарядные устройства.</div></div>
+        <div class="imp-item"><button class="imp-q" onclick="toggleImp(this)"><span>⚡ Уровень физической нагрузки</span><span class="imp-ic">+</span></button><div class="imp-a">Уровень 3/5 — умеренный. В программе несколько пеших переходов до 14 км в день. День 3 — поход через перевал 3320 м. Требуется хорошая физическая форма и отсутствие острых заболеваний. Если есть сомнения — напишите нам.</div></div>
+        <div class="imp-item"><button class="imp-q" onclick="toggleImp(this)"><span>📶 Связь и интернет</span><span class="imp-ic">+</span></button><div class="imp-a">В Бишкеке и городах — хороший 4G. На маршрутах Сон-Куль и Килемче — нет связи (это часть опыта 🙂). Рекомендуем SIM-карту местного оператора (Beeline, MegaCom) — продаются в аэропорту.</div></div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Country info links -->
+      <div class="sec-title">Узнать больше о <em>Кыргызстане</em></div>
+      <p style="font-size:.86rem;color:var(--txm);margin-bottom:16px">Читайте наши статьи о культуре, традициях и истории страны:</p>
+      <div class="country-links">
+        <a href="#" class="clink"><div class="cf">🏕️</div><div>Юрта и<br>кочевой быт</div></a>
+        <a href="#" class="clink"><div class="cf">🎭</div><div>Манас: эпос<br>кыргызов</div></a>
+        <a href="#" class="clink"><div class="cf">🗿</div><div>Петроглифы<br>Чолпон-Аты</div></a>
+        <a href="#" class="clink"><div class="cf">🧶</div><div>Ремёсла:<br>войлок и шырдак</div></a>
+        <a href="#" class="clink"><div class="cf">🏔️</div><div>Горы и<br>перевалы ЦА</div></a>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- FAQ -->
+      <div class="sec-title">Вопросы по <em>этому туру</em></div>
+      <div class="faq-list">
+        <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Тур только для женщин?</span><span class="fi-ic">+</span></button><div class="fa">Да, это эксклюзивный женский тур с проживанием только для женщин. Программа создана специально под тему женского вдохновения, самопознания и бизнеса.</div></div>
+        <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Что такое Всемирные игры кочевников?</span><span class="fi-ic">+</span></button><div class="fa">Международный фестиваль раз в два года, посвящённый культурному наследию кочевых цивилизаций. Традиционные виды спорта, ремёсла, музыка. 6-е игры пройдут 31 августа — 6 сентября 2026 в Чолпон-Ате.</div></div>
+        <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Нужна ли специальная подготовка для походов?</span><span class="fi-ic">+</span></button><div class="fa">Специальных навыков не требуется, но нужна хорошая физическая форма. День 3 — горный поход через перевал 3320 м. Рекомендуем несколько недель до тура начать регулярные прогулки по 5–8 км.</div></div>
+        <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Как забронировать и каков депозит?</span><span class="fi-ic">+</span></button><div class="fa">Нажмите «Забронировать» → заполните форму → мы свяжемся в течение 24 часов. Депозит: ₽24 055 (доплата за одноместный номер при наличии) или обговаривается индивидуально. Остаток — за 60 дней до тура.</div></div>
+        <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Доступны ли одноместные номера?</span><span class="fi-ic">+</span></button><div class="fa">Да, доплата за одноместное размещение: ₽24 055/человек (доступно в Бишкеке, Каракол, Кочкор, Чолпон-Ата). В юрточных лагерях — 4 человека в юрте.</div></div>
+        <div class="fi"><button class="fq" onclick="tFaq(this)"><span>Каковы условия отмены?</span><span class="fi-ic">+</span></button><div class="fa">За 60+ дней — полный возврат. За 30–60 дней — 50%. За 30 дней и менее — возврат невозможен. Рекомендуем оформить туристическую страховку с покрытием отмены поездки.</div></div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Reviews -->
+      <div class="sec-title">Отзывы <em>участниц</em></div>
+      <div class="reviews-grid">
+        <div class="rev-card">
+          <div class="rev-stars">★★★★★</div>
+          <div class="rev-text">«Это было трансформационное путешествие. Горы, женщины, игры кочевников — я вернулась другим человеком. Рекомендую каждой женщине, которая ищет вдохновение.»</div>
+          <div class="rev-author"><div class="rev-ava">👤</div><div><div class="rev-name">Анна С.</div><div class="rev-country">Москва, Россия</div></div></div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-stars">★★★★★</div>
+          <div class="rev-text">«Встречи с кыргызскими женщинами-предпринимателями изменили мой взгляд на бизнес. Природа Сон-Куля — нет слов. Команда NovaTravel — профессионалы с душой.»</div>
+          <div class="rev-author"><div class="rev-ava">👤</div><div><div class="rev-name">Марина К.</div><div class="rev-country">Алматы, Казахстан</div></div></div>
+        </div>
+      </div>
+      <div class="rev-cta">
+        <p>Были в этом туре? Поделитесь впечатлениями — это помогает другим путешественницам!</p>
+        <a href="https://g.page/r/CVhPVdtgUiC2EBI/review" target="_blank" class="btn bp">Оставить отзыв в Google</a>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Related blog posts -->
+      <div class="sec-title">Читайте в <em>блоге</em></div>
+      <div class="related-grid">
+        <a href="#" class="rbcard"><div class="rbcard-ph">🏕️</div><div class="rbcard-b"><div class="rbcard-tg">Кыргызстан</div><div class="rbcard-ti">Юрта: кочевой дом и живой символ культуры</div></div></a>
+        <a href="#" class="rbcard"><div class="rbcard-ph">🎭</div><div class="rbcard-b"><div class="rbcard-tg">Традиции</div><div class="rbcard-ti">Манас — эпос, объединяющий кыргызский народ</div></div></a>
+        <a href="#" class="rbcard"><div class="rbcard-ph">🗿</div><div class="rbcard-b"><div class="rbcard-tg">История</div><div class="rbcard-ti">Петроглифы Чолпон-Аты: тысячи лет в камне</div></div></a>
+      </div>
+
+    </div><!-- /tour-main -->
+
+    <!-- SIDEBAR -->
+    <div class="tour-sidebar">
+      <div class="sidebar-card" id="book">
+        <div class="price-main">₽205 711</div>
+        <div class="price-sub">на человека (размещение в двухместном номере)</div>
+        <div class="quick-info">
+          <div class="qi"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>29 авг — 7 сент 2026<strong>10 дней</strong></div>
+          <div class="qi"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Размер группы<strong>4–12 чел</strong></div>
+          <div class="qi"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Нагрузка<strong>Умеренная</strong></div>
+          <div class="qi"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Комфорт<strong>Стандарт</strong></div>
+        </div>
+        <div class="price-details">
+          <div class="price-row"><span class="pk">Депозит при бронировании</span><span class="pv">₽24 055</span></div>
+          <div class="price-row"><span class="pk">Single supplement</span><span class="pv">₽24 055</span></div>
+          <div class="price-row"><span class="pk">Минимум в группе</span><span class="pv">4 человека</span></div>
+        </div>
+        <div class="sidebar-btns">
+          <a href="#" class="btn bp bfull">Забронировать тур →</a>
+          <a href="mailto:novatravel.world@gmail.com?subject=Депозит - Кочевая женщина 2026" class="btn bo bfull">Внести депозит</a>
+          <a href="mailto:novatravel.world@gmail.com?subject=Индивидуальный тур кочевая женщина" class="btn bw bfull" style="border:1.5px solid var(--bdr)!important">Индивидуальный тур</a>
+        </div>
+        <div class="sidebar-note">При нажатии «Забронировать» вы перейдёте на форму заявки. После этого мы свяжемся с вами в течение 24 часов.</div>
+      </div>
+
+      <!-- Brochure -->
+      <div class="sidebar-card" style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:10px">📄</div>
+        <div style="font-family:var(--fh);font-size:1rem;margin-bottom:6px">Скачать брошюру тура</div>
+        <div style="font-size:.8rem;color:var(--txm);margin-bottom:14px">PDF с полным описанием, фото и ценами</div>
+        <a href="#" class="btn bp bfull bsm">Скачать PDF</a>
+      </div>
+
+      <!-- Similar tours -->
+      <div class="sidebar-card">
+        <div style="font-family:var(--fh);font-size:1rem;margin-bottom:14px;border-bottom:1px solid var(--bdr);padding-bottom:10px">Похожие туры</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <a href="#" style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:52px;height:40px;border-radius:6px;background:var(--lav-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🏔️</div>
+            <div><div style="font-size:.84rem;font-weight:500;color:var(--tx)">Памирский тракт</div><div style="font-size:.76rem;color:var(--txl)">10 дней · от $1900</div></div>
+          </a>
+          <a href="#" style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:52px;height:40px;border-radius:6px;background:var(--grn-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🕌</div>
+            <div><div style="font-size:.84rem;font-weight:500;color:var(--tx)">Великий Шёлковый путь</div><div style="font-size:.76rem;color:var(--txl)">12 дней · от $2200</div></div>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /sidebar -->
+
+  </div><!-- /tour-body -->
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ft-mini">
+      <div class="ft-mini-logo">
+        <img src="logo.png" alt="NT" onerror="this.style.display='none'">
+        <span>NovaTravel</span>
+      </div>
+      <div class="ft-mini-links">
+        <a href="index.html">Главная</a>
+        <a href="index.html#tours">Туры</a>
+        <a href="index.html#blog">Блог</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="mailto:novatravel.world@gmail.com">Контакты</a>
+      </div>
+    </div>
+    <div class="ft-mini-copy">
+      © 2025 NovaTravel · 
+      <a href="privacy.html" style="color:rgba(255,255,255,.45)">Политика конфиденциальности</a> · 
+      <a href="terms.html" style="color:rgba(255,255,255,.45)">Условия использования</a> · 
+      <a href="refund.html" style="color:rgba(255,255,255,.45)">Политика возврата</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleDay(btn){
+  btn.classList.toggle('on');
+  btn.nextElementSibling.classList.toggle('on');
+}
+function toggleImp(btn){
+  btn.classList.toggle('on');
+  btn.nextElementSibling.classList.toggle('on');
+}
+function tFaq(b){b.classList.toggle('on');b.nextElementSibling.classList.toggle('on')}
+
+// Открыть первый день по умолчанию уже задан через class on
+
+// Sticky header shadow
+window.addEventListener('scroll',()=>{
+  document.querySelector('.hdr').classList.toggle('sc',scrollY>40);
+});
+</script>
+</body>
+</html>
